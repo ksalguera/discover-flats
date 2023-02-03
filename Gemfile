@@ -15,6 +15,9 @@ gem "puma", "~> 5.0"
 # Use serializers to generate JSON in an object-oriented manner
 gem 'active_model_serializers', '~> 0.10.2'
 
+# Process manager for applications with multiple components
+gem 'foreman', '~> 0.87.2'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
