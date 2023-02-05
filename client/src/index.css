@@ -7,7 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#headerImg {
+  max-height: 350px;
+  width: 100%;
+  object-fit: cover;
 }
