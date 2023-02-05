@@ -1,5 +1,4 @@
 puts 'Seeding Database'
-property_description_one = "Artistry is a creatively revitalized mixed use campus in the Cole Noble district of downtown Indianapolis. Its architecture, modern features and appreciation for the arts is bound by the community's history of craft and skill. The main building features five stories of urban apartment homes and up to 68,000 square feet of commercial office space. With the addition of Mentor, Muse & Mosaic, the four building campus provides more living options to fit different lifestyles, including eco-suites for those who need minimal space. With a fun and creative atmosphere, Artistry allows your life to become a work of art."
 
 # properties 
 Property.create(
@@ -12,7 +11,9 @@ Property.create(
   city: 'Indianapolis',
   state: 'IN',
   zip: 46204,
-  description: property_description_one, 
+  description: "Artistry is a creatively revitalized mixed use campus in the Cole Noble district of downtown Indianapolis. 
+  Its architecture, modern features and appreciation for the arts is bound by the community's history of craft and skill. 
+  The main building features five stories of urban apartment homes and up to 68,000 square feet of commercial office space.", 
   pet_limit: 2,
   dogs_allowed: 1,
   dog_restrictions: 'None',
@@ -26,6 +27,55 @@ Property.create(
   admin_fee: 150
 )
 
-# variables for seeds
+Property.create(
+  name: 'Industry',
+  image_url: 'https://industry-indianapolis.com/wp-content/uploads/2023/01/20220921-CSP-INDIANAPOLIS-POOL-2-scaled.jpeg',
+  website: 'https://industry-indianapolis.com/',
+  phone_number_unformatted: 4632096448,
+  address_line_one: '421 N Pennsylvania St',
+  address_line_two: nil,
+  city: 'Indianapolis',
+  state: 'IN',
+  zip: 46204,
+  description: 'Industry Indianapolis redefines luxury living with its brand-new alcove, one, two, and three-bedroom 
+  apartments, and townhomes. Residents enjoy access to the coveted Mass Ave District as well as resort-quality amenities.', 
+  pet_limit: 2,
+  dogs_allowed: 1,
+  dog_restrictions: 'Non-aggressive breeds only. Please contact the leasing office for full pet details.',
+  dog_fee: 30, 
+  dog_deposit: 300, 
+  cats_allowed: 1,
+  cat_restrictions: 'None',
+  cat_fee: 30,
+  cat_deposit: 300,
+  application_fee: 50,
+  admin_fee: 200
+)
+
+Property.create(
+  name: 'Circle City Apartments',
+  image_url: 'https://www.circlecityapartments.com/img/cache/p56/c3100/91194/a44530fef90d98a764575d0d43fa94c7/Winterhouse.jpeg',
+  website: 'https://www.circlecityapartments.com/',
+  phone_number_unformatted: 4632098582,
+  address_line_one: '1321 N Meridian St',
+  address_line_two: nil,
+  city: 'Indianapolis',
+  state: 'IN',
+  zip: 46202,
+  description: "Circle City Apartments offers a blend of comfort, quality, and design. You'll find 
+  this community on N Meridian St in Indianapolis.", 
+  pet_limit: 2,
+  dogs_allowed: 1,
+  dog_restrictions: 'None',
+  dog_fee: 25, 
+  dog_deposit: 0, 
+  cats_allowed: 1,
+  cat_restrictions: 'None',
+  cat_fee: 25,
+  cat_deposit: 0,
+  application_fee: 50,
+  admin_fee: 100
+)
+
 
 puts 'Seeding Complete'
