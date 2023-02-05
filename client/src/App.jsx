@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Routes, Route } from 'react-router-dom';
 import TopBar from './pages/main/TopBar';
 import Home from './pages/main/Home';
+import PropertyList from './pages/properties/PropertyList';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -16,6 +17,7 @@ function App() {
         <TopBar />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/properties' element={<PropertyList />} />
         </Routes>
       </ThemeProvider>
     </ColorModeContext.Provider>
