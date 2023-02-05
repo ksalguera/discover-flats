@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropertyCard from '../../components/PropertyCard';
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
@@ -16,7 +17,19 @@ const PropertyList = () => {
   }, []);
   
   return (
-    <div>PropertyList</div>
+    <>
+      {properties.map(property => {
+        return (
+          <PropertyCard
+            key={property.id}
+            name={property.name}
+            image={property.image_url}
+            address={property.full_address}
+            phone={property.phone_number}
+          />
+        )
+      })}
+    </>
   )
 }
 
