@@ -3,7 +3,7 @@ import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import { ColorModeContext, useMode } from './contexts/ThemeContext';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './pages/main/NavBar';
+import TopBar from './pages/main/TopBar';
 import Home from './pages/main/Home';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
-        <NavBar />
+        <TopBar />
         <Routes>
           <Route path='/' element={<Home />} />
         </Routes>
