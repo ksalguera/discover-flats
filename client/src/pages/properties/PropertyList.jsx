@@ -28,6 +28,7 @@ const PropertyList = () => {
             <Grid xs={6} md={4} key={property.id}>
               <PropertyCard
                 key={property.id}
+                propertyId={property.id}
                 name={property.name}
                 image={property.image_url}
                 address={property.full_address}

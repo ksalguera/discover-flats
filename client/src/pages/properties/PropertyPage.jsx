@@ -19,6 +19,7 @@ const PropertyPage = () => {
 
     fetchProperty()
   }, []);
+  
   const address = property.full_address;
   let searchableAddress = address ? address.replaceAll(' ', '+') : 'Loading...';
 
