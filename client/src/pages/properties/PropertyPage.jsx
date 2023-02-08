@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import PropertyGallery from './PropertyGallery';
 import SectionTitle from '../../components/SectionTitle';
 
@@ -19,12 +19,16 @@ const PropertyPage = () => {
 
     fetchProperty()
   }, []);
-  
+
   const address = property.full_address;
   let searchableAddress = address ? address.replaceAll(' ', '+') : 'Loading...';
 
   return (
     <Box mx={2}>
+      <Breadcrumbs separator='›' aria-label='breadcrumb' mb={2}>
+        <Link underline='hover' href='/properties'>Properties</Link>
+        <Typography color='text.primary'>{property.name}</Typography>
+      </Breadcrumbs>
       <Typography variant='h2'>{property.name}</Typography>
       <Typography sx={{ fontSize: 14 }} color='text.primary' mb={1}>{property.full_address}</Typography>
       <PropertyGallery mainImg={property.image_url}/>

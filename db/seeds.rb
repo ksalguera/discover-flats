@@ -77,5 +77,14 @@ Property.create(
   admin_fee: 100
 )
 
+image_list = [
+  [1, 'https://artistryindy.com/assets/images/cache/gallery_18_artistry_1260-f3b7a9ecd32e6efab1edb90657c9f988.jpg'],
+  [1, 'https://artistryindy.com/assets/images/cache/Artistry-Photo-15-3c9aec77aaf9f4e6e9bdec6c33508acb.jpg'],
+  [1, 'https://artistryindy.com/assets/images/cache/gallery_22_artistry_1260-ff11ecb22c2fc3d1e3f2e346d404e82d.jpg'],
+  [1, 'https://artistryindy.com/assets/images/cache/gallery_11_artistry_1260-5131ad0b097db89da3bef30786abdb65.jpg']
+]
+
+image_list.each { |id, url| Image.create(property_id: id, image_url: url) }
+
 
 puts 'Seeding Complete'

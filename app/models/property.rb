@@ -1,4 +1,5 @@
 class Property < ApplicationRecord
+  has_many :images
 
   # formats phone_number
   def phone_number

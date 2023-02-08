@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:visited {
+a, a:visited {
   color: rgb(115, 141, 227);
 }
 
