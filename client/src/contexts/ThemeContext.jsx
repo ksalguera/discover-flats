@@ -1,6 +1,6 @@
 import { createContext, useState, useMemo } from 'react';
 import { createTheme } from '@mui/material/styles';
-import { cyan, green, grey } from '@mui/material/colors';
+import { cyan, teal, grey } from '@mui/material/colors';
 
 ////////////////////////////////////////////////////////
 //                   creates MUI theme                //
@@ -12,8 +12,8 @@ export const themeSettings = mode => {
       mode: mode,
       ...(mode === 'light'
         ? {
-          primary: { main: cyan[300] },
-          secondary: { main: green[500] },
+          primary: { main: cyan[600] },
+          secondary: { main: teal[600] },
           neutral: {
             dark: grey[700],
             main: grey[500],
@@ -22,7 +22,7 @@ export const themeSettings = mode => {
           background: { default: '#fcfcfc' }
         } : {
           primary: { main: cyan[300] },
-          secondary: { main: green[500] },
+          secondary: { main: teal[500] },
           neutral: {
             dark: grey[700],
             main: grey[500],

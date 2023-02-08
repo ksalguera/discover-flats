@@ -7,6 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a:visited {
+  color: rgb(115, 141, 227);
+}
+
+a:hover {
+  color: LinkText;
+}
+
 #headerImg {
   max-height: 350px;
   width: 100%;
