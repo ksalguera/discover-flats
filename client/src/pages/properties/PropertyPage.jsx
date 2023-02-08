@@ -31,7 +31,7 @@ const PropertyPage = () => {
       </Breadcrumbs>
       <Typography variant='h2'>{property.name}</Typography>
       <Typography sx={{ fontSize: 14 }} color='text.primary' mb={1}>{property.full_address}</Typography>
-      <PropertyGallery mainImg={property.image_url}/>
+      <PropertyGallery mainImg={property.image_url} images={property.images} />
       <SectionTitle title='Description' />
       {property.description}
       <SectionTitle title='Contact' />
