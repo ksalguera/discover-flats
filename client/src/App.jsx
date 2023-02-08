@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import TopBar from './pages/main/TopBar';
 import Home from './pages/main/Home';
 import PropertyList from './pages/properties/PropertyList';
+import PropertyPage from './pages/properties/PropertyPage';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -17,7 +18,8 @@ function App() {
         <TopBar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/properties' element={<PropertyList />} />
+          <Route path='/properties' element={<PropertyList />} />           
+          <Route path='/properties/:id' element={<PropertyPage />} />   
         </Routes>
       </ThemeProvider>
     </ColorModeContext.Provider>

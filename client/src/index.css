@@ -12,3 +12,20 @@ body {
   width: 100%;
   object-fit: cover;
 }
+
+#propertyPageImg {
+  max-width: 800px;
+  max-height: 600px;
+  object-fit: cover;
+}
+#propertyPageMobileImg {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+#propertyPageSummaryImg {
+  width: 100%;
+  max-height: 296px;
+  /* object-fit: contain; */
+}
