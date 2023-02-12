@@ -1,4 +1,5 @@
 import './App.css';
+import { useState, useEffect } from 'react';
 import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import { ColorModeContext, useMode } from './contexts/ThemeContext';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,14 +13,34 @@ import FavoriteList from './pages/favorites/FavoriteList';
 function App() {
   const [theme, colorMode] = useMode();
 
+  const [properties, setProperties] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  
+  // properties fetch request
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const res = await fetch('/properties');
+      if (!res.ok) throw new Error(res.statusText);
+      const json = await res.json();
+      setProperties(json);
+    }
+
+    fetchProperties()
+  }, []);
+
+  // updates properties based on search value field 
+  const updatedSearchValue = searchValue.toLowerCase();
+  const filteredProperties = properties.filter(property => property.name.toLowerCase().includes(updatedSearchValue));
+  const updatedProperties = searchValue === '' ? properties : filteredProperties;
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
-        <TopBar />
+        <TopBar properties={properties} searchValue={searchValue} setSearchValue ={setSearchValue} />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/properties' element={<PropertyList />} />           
+          <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
           <Route path='/properties/:id' element={<PropertyPage />} />   
           <Route path='/favorites' element={<FavoriteList />} />
         </Routes>

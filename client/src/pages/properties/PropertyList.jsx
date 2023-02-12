@@ -4,24 +4,26 @@ import { Box } from '@mui/material';
 import PropertyCard from '../../components/PropertyCard';
 import PageTitle from '../../components/PageTitle';
 
-const PropertyList = () => {
-  const [properties, setProperties] = useState([]);
+const PropertyList = ({ properties }) => {
+  // const [properties, setProperties] = useState([]);
   
-  // properties fetch request
-  useEffect(() => {
-    const fetchProperties = async () => {
-      const res = await fetch('/properties');
-      if (!res.ok) throw new Error(res.statusText);
-      const json = await res.json();
-      setProperties(json);
-    }
+  // // properties fetch request
+  // useEffect(() => {
+  //   const fetchProperties = async () => {
+  //     const res = await fetch('/properties');
+  //     if (!res.ok) throw new Error(res.statusText);
+  //     const json = await res.json();
+  //     setProperties(json);
+  //   }
 
-    fetchProperties()
-  }, []);
+  //   fetchProperties()
+  // }, []);
+  
   
   return (
     <Box mx={2}>
-    <PageTitle title='Properties in Indianapolis' />
+      <PageTitle title='Properties in Indianapolis' />
+      {properties.length === 0 ? <h3>No Results Found</h3> :
       <Grid container spacing={2}>
         {properties.map(property => {
           return (
@@ -38,6 +40,7 @@ const PropertyList = () => {
           )
         })}
       </Grid>
+      }
     </Box>
   )
 }

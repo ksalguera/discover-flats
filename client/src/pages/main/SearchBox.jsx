@@ -1,13 +1,20 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
-const SearchBox = () => {
-  const [age, setAge] = useState('');
+const SearchBox = ({ properties, searchValue, setSearchValue }) => {
+  const [beds, setBeds] = useState('');
   const [baths, setBaths] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (event) => {
+    setSearchValue(event.target.value);
+    navigate('/properties');
+  }
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setBeds(event.target.value);
   };
 
   const handleChangeTwo = (event) => {
@@ -28,13 +35,16 @@ const SearchBox = () => {
         }}
         size='small'
         placeholder='Search...'
+        value={searchValue}
+        onChange={handleSearch}
+        onClick={() => setSearchValue('')}
       />
       <FormControl sx={{ m: 1, minWidth: 100 }} size='small'>
         <InputLabel id="demo-select-small">Bed</InputLabel>
         <Select
           labelId="demo-select-small"
           id="demo-select-small"
-          value={age}
+          value={beds}
           label="Age"
           onChange={handleChange}
         >
