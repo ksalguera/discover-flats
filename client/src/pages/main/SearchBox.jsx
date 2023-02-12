@@ -29,7 +29,7 @@ const SearchBox = () => {
         size='small'
         placeholder='Search...'
       />
-      <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+      <FormControl sx={{ m: 1, minWidth: 100 }} size='small'>
         <InputLabel id="demo-select-small">Bed</InputLabel>
         <Select
           labelId="demo-select-small"
@@ -46,7 +46,7 @@ const SearchBox = () => {
           <MenuItem value={30}>3 Bed</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+      <FormControl sx={{ m: 1, minWidth: 100 }} size='small'>
         <InputLabel id="demo-select-small">Bath</InputLabel>
         <Select
           labelId="demo-select-small"

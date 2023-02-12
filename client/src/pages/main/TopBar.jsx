@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Typography, Stack, IconButton } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import Box from '@mui/material/Box';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMode } from '../../contexts/ThemeContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -23,11 +22,10 @@ const TopBar = () => {
             <MenuIcon />
           </Stack>      
           :  
-          <Stack direction='row' justifyContent='space-between'>
+          <Stack direction='row' justifyContent='space-between' spacing={1}>
             <Stack direction='row' alignItems='center' spacing={2}>
               <Typography variant='h1' color='primary' onClick={() => navigate('/')}>Discover Flats</Typography>
               <SearchBox />
-              <IconButton><FavoriteIcon size='small'/></IconButton>
             </Stack>
             <NavBar />
           </Stack>
