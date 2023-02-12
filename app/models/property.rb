@@ -1,6 +1,8 @@
 class Property < ApplicationRecord
   has_many :images
 
+  validates :name, presence: true
+
   # formats phone_number
   def phone_number
     self.phone_number_unformatted.insert(0, '(').insert(4, ')').insert(5,' ').insert(9,'-')
