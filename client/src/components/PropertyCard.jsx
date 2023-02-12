@@ -7,7 +7,7 @@ function PropertySummary({ propertyId, name, image, address, phone }) {
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ minWidth: 275, maxWidth: 345 }}>
+    <Card sx={{ minWidth: 275, maxWidth: 450 }}>
       <CardMedia sx={{ height: 140 }} image={image} />
       <CardContent>
         <Stack direction='row' alignItems='center' justifyContent='space-between' spacing={2}>

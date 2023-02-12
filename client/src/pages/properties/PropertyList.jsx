@@ -25,7 +25,7 @@ const PropertyList = () => {
       <Grid container spacing={2}>
         {properties.map(property => {
           return (
-            <Grid xs={6} md={4} key={property.id}>
+            <Grid xs={12} md={6} lg={4} xl={2} key={property.id}>
               <PropertyCard
                 key={property.id}
                 propertyId={property.id}
