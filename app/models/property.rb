@@ -2,6 +2,9 @@ class Property < ApplicationRecord
   has_many :images
 
   validates :name, presence: true
+  validates :affordability, inclusion: { in: ['affordable', 'midrange', 'luxury'] }
+
+  private
 
   # formats phone_number
   def phone_number

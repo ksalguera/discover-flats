@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_035252) do
     t.integer "cat_deposit"
     t.integer "application_fee"
     t.integer "admin_fee"
+    t.string "affordability"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

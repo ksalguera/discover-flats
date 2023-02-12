@@ -24,7 +24,8 @@ Property.create(
   cat_fee: 25,
   cat_deposit: 200,
   application_fee: 50,
-  admin_fee: 150
+  admin_fee: 150,
+  affordability: 'luxury'
 )
 
 Property.create(
@@ -49,7 +50,8 @@ Property.create(
   cat_fee: 30,
   cat_deposit: 300,
   application_fee: 50,
-  admin_fee: 200
+  admin_fee: 200,
+  affordability: 'luxury'
 )
 
 Property.create(
@@ -74,7 +76,8 @@ Property.create(
   cat_fee: 25,
   cat_deposit: 0,
   application_fee: 50,
-  admin_fee: 100
+  admin_fee: 100,
+  affordability: 'luxury'
 )
 
 image_list = [

@@ -22,6 +22,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
       t.integer :cat_deposit
       t.integer :application_fee
       t.integer :admin_fee
+      t.string :affordability
       t.timestamps
     end
   end
