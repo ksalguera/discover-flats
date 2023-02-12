@@ -1,9 +1,9 @@
-import React from 'react'
-
-function FavoriteList() {
+const FavoriteList = () => {
   return (
-    <div>FavoriteList</div>
+    <>
+      Favorites
+    </>
   )
 }
 
-export default FavoriteList
+export default FavoriteList;

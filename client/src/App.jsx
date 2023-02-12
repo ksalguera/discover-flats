@@ -7,6 +7,7 @@ import TopBar from './pages/main/TopBar';
 import Home from './pages/main/Home';
 import PropertyList from './pages/properties/PropertyList';
 import PropertyPage from './pages/properties/PropertyPage';
+import FavoriteList from './pages/favorites/FavoriteList';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -20,6 +21,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/properties' element={<PropertyList />} />           
           <Route path='/properties/:id' element={<PropertyPage />} />   
+          <Route path='/favorites' element={<FavoriteList />} />
         </Routes>
       </ThemeProvider>
     </ColorModeContext.Provider>
