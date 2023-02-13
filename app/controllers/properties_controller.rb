@@ -20,13 +20,13 @@ class PropertiesController < ApplicationController
     render json: properties, methods: [:phone_number, :full_address]
   end
 
-    # GET /midrange_properties
-    def midrange
-      properties = Property.where(affordability: 'midrange')
-      render json: properties, methods: [:phone_number, :full_address]
-    end
+  # GET /midrange_properties
+  def midrange
+    properties = Property.where(affordability: 'midrange')
+    render json: properties, methods: [:phone_number, :full_address]
+  end
 
-      # GET /luxury_properties
+  # GET /luxury_properties
   def luxury
     properties = Property.where(affordability: 'luxury')
     render json: properties, methods: [:phone_number, :full_address]

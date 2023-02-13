@@ -18,6 +18,9 @@ gem 'active_model_serializers', '~> 0.10.2'
 # Process manager for applications with multiple components
 gem 'foreman', '~> 0.87.2'
 
+# Use Active Model has_secure_password
+gem 'bcrypt', '~> 3.1.12'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 
