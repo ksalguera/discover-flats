@@ -24,7 +24,7 @@ const TopBar = ({ properties, searchValue, setSearchValue }) => {
           :  
           <Stack direction='row' justifyContent='space-between' spacing={1}>
             <Stack direction='row' alignItems='center' spacing={2}>
-              <Typography variant='h1' color='primary' onClick={() => navigate('/')}>Discover Flats</Typography>
+              <Typography variant='h1' color='primary' sx={{cursor: 'pointer'}} onClick={() => navigate('/')}>Discover Flats</Typography>
               <SearchBox properties={properties} searchValue={searchValue} setSearchValue ={setSearchValue} />
             </Stack>
             <NavBar />

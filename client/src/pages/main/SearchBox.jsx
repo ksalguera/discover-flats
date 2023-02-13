@@ -45,15 +45,15 @@ const SearchBox = ({ properties, searchValue, setSearchValue }) => {
           labelId="demo-select-small"
           id="demo-select-small"
           value={beds}
-          label="Age"
+          label='bed'
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>1 Bed</MenuItem>
-          <MenuItem value={20}>2 Bed</MenuItem>
-          <MenuItem value={30}>3 Bed</MenuItem>
+          <MenuItem value=''>None</MenuItem>
+          <MenuItem value={1}>1 Bed</MenuItem>
+          <MenuItem value={2}>2 Bed</MenuItem>
+          <MenuItem value={3}>3 Bed</MenuItem>
+          <MenuItem value={4}>4 Bed</MenuItem>
+          <MenuItem value={5}>5+ Bed</MenuItem>
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 100 }} size='small'>
@@ -62,12 +62,10 @@ const SearchBox = ({ properties, searchValue, setSearchValue }) => {
           labelId="demo-select-small"
           id="demo-select-small"
           value={baths}
-          label="Age"
+          label='baths'
           onChange={handleChangeTwo}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
+          <MenuItem value=''>None</MenuItem>
           <MenuItem value={1}>1 Bath</MenuItem>
           <MenuItem value={1.5}>1.5 Bath</MenuItem>
           <MenuItem value={2}>2 Bath</MenuItem>
