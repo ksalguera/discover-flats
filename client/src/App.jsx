@@ -9,6 +9,7 @@ import Home from './pages/main/Home';
 import PropertyList from './pages/properties/PropertyList';
 import PropertyPage from './pages/properties/PropertyPage';
 import FavoriteList from './pages/favorites/FavoriteList';
+import Login from './pages/profile/Login';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -43,6 +44,7 @@ function App() {
           <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
           <Route path='/properties/:id' element={<PropertyPage />} />   
           <Route path='/favorites' element={<FavoriteList />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </ThemeProvider>
     </ColorModeContext.Provider>

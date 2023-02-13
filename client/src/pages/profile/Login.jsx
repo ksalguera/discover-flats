@@ -1,9 +1,13 @@
 import React from 'react'
+import { Box } from '@mui/material';
+import PageTitle from '../../components/PageTitle';
 
-function Login() {
+const Login = () => {
   return (
-    <div>Login</div>
+    <Box mx={2}>
+      <PageTitle title='Login' />
+    </Box>
   )
 }
 
-export default Login
+export default Login;
