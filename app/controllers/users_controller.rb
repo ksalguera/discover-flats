@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :authorize, only: [:create]
+  
+  # GET /users/:id
+  def show
+    render json: @current_user
+  end
 
   # POST /signup
   def create
