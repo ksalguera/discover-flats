@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
-
+  skip_before_action :authorize
+  
   # GET /properties
   def index
     properties = Property.all
