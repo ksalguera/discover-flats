@@ -13,14 +13,32 @@ const SignUp = () => {
   }
 
   const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState([]);
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData)
+    fetch('/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(data => {
+            console.log(data)
+            setErrors([])
+          })
+        } else {
+          res.json().then(errorData => setErrors(errorData.errors))
+        }
+      })
+    
+    // clears form inputs after submit
     setFormData(initialState);
   } 
+  console.log()
 
   return (
     <Box mx={2} mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -67,9 +85,16 @@ const SignUp = () => {
             value={formData.password_confirmation}
             onChange={handleInputChange}
           />
+          {errors.length > 0 && (
+            <ul>
+              {errors.map(error => <li key={error} style={{color: 'red'}}>{error}</li>)}
+            </ul>
+            )
+          }
           <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>SIGN UP</Button>
           <Typography>Already have an account? <Link href='#'>LOGIN</Link></Typography>  
         </FormControl>
+        
       </Paper>
     </Box>
   )
