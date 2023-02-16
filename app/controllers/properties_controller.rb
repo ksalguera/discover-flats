@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
-  skip_before_action :authorize
+  skip_before_action :authorize, only: [:index, :show]
+  skip_before_action :authorize_managers, only: [:index, :show]
   
   # GET /properties
   def index

@@ -14,9 +14,21 @@ import SignUp from './pages/profile/SignUp';
 
 function App() {
   const [theme, colorMode] = useMode();
-
+  const [errors, setErrors] = useState([]);
+  const [currentUser, setCurrentUser] = useState('');
   const [properties, setProperties] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  
+  // set user fetch request
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch('/login');
+      if (!res.ok) throw new Error(res.statusText);
+      const json = await res.json();
+      setCurrentUser(json);
+    }
+  }, [])
+
   
   // properties fetch request
   useEffect(() => {
@@ -28,7 +40,7 @@ function App() {
     }
 
     fetchProperties()
-  }, []);
+  }, [])
 
   // updates properties based on search value field 
   const updatedSearchValue = searchValue.toLowerCase();
@@ -39,7 +51,7 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
-        <TopBar properties={properties} searchValue={searchValue} setSearchValue ={setSearchValue} />
+        <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue}  />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
