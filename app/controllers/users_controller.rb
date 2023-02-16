@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorize, only: [:create]
+  skip_before_action :authorize_managers
   
   # GET /users/:id
   def show
@@ -9,6 +10,7 @@ class UsersController < ApplicationController
   # POST /signup
   def create
     user = User.create!(user_params)
+    session[:user_id] = user.id
     render json: user
   end
 

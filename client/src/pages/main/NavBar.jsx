@@ -1,7 +1,19 @@
-import { NavLink as RouterLink } from 'react-router-dom';
-import { Stack, Link } from "@mui/material";
+import { NavLink as RouterLink, useNavigate } from 'react-router-dom';
+import { Stack, Link, Button } from "@mui/material";
 
-const NavBar = () => {
+const NavBar = ({ currentUser, setCurrentUser }) => {
+  const navigate = useNavigate();
+  
+  const handleLogOut = () => {
+    const logOut = async () => {
+      const res = await fetch('/logout', { method: 'DELETE' });
+      if (res.ok) setCurrentUser(null) 
+    }
+
+    logOut()
+    navigate('/properties')
+  }
+
   // ----------------- Active Link Style ----------------- //
   const navBarStyle = {
     '&&': {
@@ -15,7 +27,6 @@ const NavBar = () => {
       color: 'primary.main'
     }
   }
- 
 
   return (
     <>
@@ -23,7 +34,11 @@ const NavBar = () => {
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/properties'>Properties</Link>         
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/favorites'>Favorties</Link>
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/profile'>Profile</Link> 
-        <Link component={RouterLink} underline='none' sx={navBarStyle} to='/login'>Log In</Link>       
+        { !currentUser ?
+          <Button variant='outlined' size='small' onClick={() => navigate('/login')}>Login</Button>
+          :
+          <Button variant='outlined' size='small' onClick={handleLogOut}>Log Out</Button>
+        }
       </Stack>
     </>
   )

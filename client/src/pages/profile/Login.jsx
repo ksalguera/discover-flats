@@ -1,19 +1,39 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
 
-const Login = () => {
+const Login = ({ setCurrentUser }) => {
   const initialState = { username: '', password: '' };
   const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData)
+    fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(data => {
+            setCurrentUser(data)
+            setErrors([])
+            navigate('/properties')
+          })
+        } else {
+          res.json().then(errorData => setErrors(errorData.errors))
+        }
+      })
+    
+    // clears form inputs after submit
     setFormData(initialState);
-  } 
+  }
 
   return (
     <Box mx={2} mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>

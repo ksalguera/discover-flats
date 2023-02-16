@@ -1,25 +1,9 @@
-import { useState, useEffect } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box } from '@mui/material';
 import PropertyCard from '../../components/PropertyCard';
 import PageTitle from '../../components/PageTitle';
 
 const PropertyList = ({ properties }) => {
-  // const [properties, setProperties] = useState([]);
-  
-  // // properties fetch request
-  // useEffect(() => {
-  //   const fetchProperties = async () => {
-  //     const res = await fetch('/properties');
-  //     if (!res.ok) throw new Error(res.statusText);
-  //     const json = await res.json();
-  //     setProperties(json);
-  //   }
-
-  //   fetchProperties()
-  // }, []);
-  
-  
   return (
     <Box mx={2}>
       <PageTitle title='Properties in Indianapolis' />

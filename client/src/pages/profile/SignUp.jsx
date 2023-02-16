@@ -3,7 +3,7 @@ import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@m
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
 
-const SignUp = () => {
+const SignUp = ({ onSetUser }) => {
   const initialState = { 
     username: '', 
     greeting: '',
@@ -27,7 +27,7 @@ const SignUp = () => {
       .then(res => {
         if (res.ok) {
           res.json().then(data => {
-            console.log(data)
+            onSetUser(data)
             setErrors([])
           })
         } else {
@@ -38,7 +38,6 @@ const SignUp = () => {
     // clears form inputs after submit
     setFormData(initialState);
   } 
-  console.log()
 
   return (
     <Box mx={2} mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>

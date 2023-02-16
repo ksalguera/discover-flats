@@ -15,7 +15,7 @@ import SignUp from './pages/profile/SignUp';
 function App() {
   const [theme, colorMode] = useMode();
   const [errors, setErrors] = useState([]);
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
   const [properties, setProperties] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   
@@ -29,7 +29,8 @@ function App() {
     }
   }, [])
 
-  
+  const handleSetUser = (newUser) => setCurrentUser(newUser)
+
   // properties fetch request
   useEffect(() => {
     const fetchProperties = async () => {
@@ -51,14 +52,14 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
-        <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue}  />
+        <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} currentUser={currentUser} setCurrentUser={setCurrentUser} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
           <Route path='/properties/:id' element={<PropertyPage />} />   
           <Route path='/favorites' element={<FavoriteList />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp /> } />
+          <Route path='/login' element={<Login setCurrentUser={setCurrentUser} />} />
+          <Route path='/signup' element={<SignUp onSetUser={setCurrentUser} /> } />
         </Routes>
       </ThemeProvider>
     </ColorModeContext.Provider>
