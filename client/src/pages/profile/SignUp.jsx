@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, FormControlLabel, Checkbox, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
 
-const SignUp = ({ onSetUser }) => {
+const SignUp = () => {
   const initialState = { 
     username: '', 
     greeting: '',
@@ -12,7 +13,8 @@ const SignUp = ({ onSetUser }) => {
     password: '',
     password_confirmation: '',
   }
-
+  
+  const { setUser } = useContext(UserContext);
   const [formData, setFormData] = useState(initialState);
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -33,7 +35,7 @@ const SignUp = ({ onSetUser }) => {
       .then(res => {
         if (res.ok) {
           res.json().then(data => {
-            onSetUser(data)
+            setUser(data)
             setErrors([])
           })
         } else {

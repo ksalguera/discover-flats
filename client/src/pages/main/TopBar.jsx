@@ -8,7 +8,7 @@ import SearchBox from "./SearchBox";
 import NavBar from "./NavBar";
 
 
-const TopBar = ({ properties, searchValue, setSearchValue, currentUser, setCurrentUser }) => {
+const TopBar = ({ properties, searchValue, setSearchValue }) => {
   const navigate = useNavigate();
   const [theme] = useMode();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -27,7 +27,7 @@ const TopBar = ({ properties, searchValue, setSearchValue, currentUser, setCurre
               <Typography variant='h1' color='primary' sx={{cursor: 'pointer'}} onClick={() => navigate('/')}>Discover Flats</Typography>
               <SearchBox properties={properties} searchValue={searchValue} setSearchValue ={setSearchValue} />
             </Stack>
-            <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            <NavBar />
           </Stack>
       }
     </Box>

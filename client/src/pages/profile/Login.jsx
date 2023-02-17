@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
 
-const Login = ({ setCurrentUser }) => {
+const Login = () => {
   const initialState = { username: '', password: '' };
+  const { setUser } = useContext(UserContext);
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ const Login = ({ setCurrentUser }) => {
       .then(res => {
         if (res.ok) {
           res.json().then(data => {
-            setCurrentUser(data)
+            setUser(data)
             setErrors(null)
             navigate('/properties')
           })

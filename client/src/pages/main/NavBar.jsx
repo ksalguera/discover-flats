@@ -1,13 +1,16 @@
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
 import { NavLink as RouterLink, useNavigate } from 'react-router-dom';
 import { Stack, Link, Button } from "@mui/material";
 
-const NavBar = ({ currentUser, setCurrentUser }) => {
+const NavBar = () => {
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   
   const handleLogOut = () => {
     const logOut = async () => {
       const res = await fetch('/logout', { method: 'DELETE' });
-      if (res.ok) setCurrentUser(null) 
+      if (res.ok) setUser(null) 
     }
 
     logOut()
@@ -33,8 +36,8 @@ const NavBar = ({ currentUser, setCurrentUser }) => {
       <Stack direction='row' alignItems='center' spacing={2}>
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/properties'>Properties</Link>         
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/favorites'>Favorties</Link>
-        { currentUser && <Link component={RouterLink} underline='none' sx={navBarStyle} to='/profile'>Profile</Link> }
-        { !currentUser ?
+        { user && <Link component={RouterLink} underline='none' sx={navBarStyle} to='/profile'>Profile</Link> }
+        { !user ?
           <Button variant='outlined' size='small' onClick={() => navigate('/login')}>Login</Button>
           :
           <Button variant='outlined' size='small' onClick={handleLogOut}>Log Out</Button>
