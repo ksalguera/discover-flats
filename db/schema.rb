@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_010536) do
     t.string "username"
     t.string "greeting"
     t.string "email"
+    t.boolean "is_manager"
     t.string "password_digest"
     t.string "password_confirmation"
     t.datetime "created_at", null: false

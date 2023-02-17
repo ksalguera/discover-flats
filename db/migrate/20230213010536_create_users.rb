@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :username
       t.string :greeting
       t.string :email
+      t.boolean :is_manager
       t.string :password_digest
       t.string :password_confirmation
 

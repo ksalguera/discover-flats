@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
+import { Box, Paper, FormControl, Button, Link, TextField, FormControlLabel, Checkbox, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
 
@@ -8,14 +8,20 @@ const SignUp = ({ onSetUser }) => {
     username: '', 
     greeting: '',
     email: '',
+    is_manager: false,
     password: '',
     password_confirmation: '',
   }
 
   const [formData, setFormData] = useState(initialState);
+  const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
+  const handleCheckedChange = e => {
+    setChecked(e.target.checked)
+    setFormData({...formData, is_manager: e.target.checked})
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -37,6 +43,7 @@ const SignUp = ({ onSetUser }) => {
     
     // clears form inputs after submit
     setFormData(initialState);
+    setChecked(false);
   } 
 
   return (
@@ -83,6 +90,10 @@ const SignUp = ({ onSetUser }) => {
             name='password_confirmation'
             value={formData.password_confirmation}
             onChange={handleInputChange}
+          />
+          <FormControlLabel
+            control={<Checkbox checked={checked} onChange={handleCheckedChange} />} 
+            label='Select this box if you are a property manager'
           />
           {errors.length > 0 && (
             <ul>
