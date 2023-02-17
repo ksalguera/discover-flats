@@ -1,9 +1,29 @@
-import React from 'react'
+import { useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { Box } from '@mui/material';
+import PageTitle from '../../components/PageTitle';
+import SectionTitle from '../../components/SectionTitle';
+import PropertyManager from './PropertyManager';
 
-function Profile() {
+const Profile = () => {
+  const { user } = useContext(UserContext);
+
   return (
-    <div>Profile</div>
+    <Box mx={2}>
+      { user === null ?
+        <div>No user data available.</div>
+        : 
+        <>
+          <PageTitle title={`Welcome, ${user.greeting}`} />
+          <SectionTitle title='Personal Information' />
+          <p>Username: {user.username}</p>
+          <p>Display Message: {user.greeting}</p>
+          <p>Email: {user.email}</p>
+          { user.is_manager && <PropertyManager />}
+        </>
+      }
+    </Box>
   )
 }
 
-export default Profile
+export default Profile;

@@ -79,6 +79,7 @@ const SignUp = () => {
           />
           <TextField
             required
+            type='password'
             margin='normal' 
             label='Password'
             name='password'
@@ -87,6 +88,7 @@ const SignUp = () => {
           />
           <TextField
             required
+            type='password'
             margin='normal' 
             label='Confirm Password'
             name='password_confirmation'

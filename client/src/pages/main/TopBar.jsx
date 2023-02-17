@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Typography, Stack } from "@mui/material";
+import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useMode } from '../../contexts/ThemeContext';

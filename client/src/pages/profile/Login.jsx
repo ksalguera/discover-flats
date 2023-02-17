@@ -50,6 +50,7 @@ const Login = () => {
             onChange={handleInputChange}
           />
           <TextField 
+            type='password'
             margin='normal' 
             label='Password'
             name='password'
