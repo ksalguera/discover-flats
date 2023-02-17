@@ -22,14 +22,14 @@ function App() {
   // set user fetch request
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch('/login');
+      const res = await fetch('/profile');
       if (!res.ok) throw new Error(res.statusText);
       const json = await res.json();
       setCurrentUser(json);
     }
+    fetchUser()
   }, [])
 
-  const handleSetUser = (newUser) => setCurrentUser(newUser)
 
   // properties fetch request
   useEffect(() => {

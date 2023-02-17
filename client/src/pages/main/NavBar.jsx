@@ -33,7 +33,7 @@ const NavBar = ({ currentUser, setCurrentUser }) => {
       <Stack direction='row' alignItems='center' spacing={2}>
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/properties'>Properties</Link>         
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/favorites'>Favorties</Link>
-        <Link component={RouterLink} underline='none' sx={navBarStyle} to='/profile'>Profile</Link> 
+        { currentUser && <Link component={RouterLink} underline='none' sx={navBarStyle} to='/profile'>Profile</Link> }
         { !currentUser ?
           <Button variant='outlined' size='small' onClick={() => navigate('/login')}>Login</Button>
           :

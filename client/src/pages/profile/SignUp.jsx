@@ -91,9 +91,8 @@ const SignUp = ({ onSetUser }) => {
             )
           }
           <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>SIGN UP</Button>
-          <Typography>Already have an account? <Link href='#'>LOGIN</Link></Typography>  
+          <Typography>Already have an account? <Link href='/login'>LOGIN</Link></Typography>  
         </FormControl>
-        
       </Paper>
     </Box>
   )

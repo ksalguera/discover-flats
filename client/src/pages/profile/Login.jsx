@@ -7,7 +7,7 @@ import SectionTitle from '../../components/SectionTitle';
 const Login = ({ setCurrentUser }) => {
   const initialState = { username: '', password: '' };
   const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
@@ -23,7 +23,7 @@ const Login = ({ setCurrentUser }) => {
         if (res.ok) {
           res.json().then(data => {
             setCurrentUser(data)
-            setErrors([])
+            setErrors(null)
             navigate('/properties')
           })
         } else {
@@ -54,8 +54,9 @@ const Login = ({ setCurrentUser }) => {
             value={formData.password}
             onChange={handleInputChange}
           />
+          {errors && (<ul><li style={{color: 'red'}}>{errors}</li></ul>)}
           <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>LOGIN</Button>
-          <Typography>Need an account? <Link href='#'>SIGN UP</Link></Typography>  
+          <Typography>Need an account? <Link href='/signup'>SIGN UP</Link></Typography>  
         </FormControl>
       </Paper>
     </Box>
