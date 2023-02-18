@@ -12,6 +12,7 @@ import FavoriteList from './pages/favorites/FavoriteList';
 import Profile from './pages/profile/Profile';
 import Login from './pages/profile/Login';
 import SignUp from './pages/profile/SignUp';
+import Footer from './pages/main/Footer';
 import UserContext from './contexts/UserContext';
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp /> } />
           </Routes>
+          <Footer />
         </UserContext.Provider>
       </ThemeProvider>
     </ColorModeContext.Provider>
