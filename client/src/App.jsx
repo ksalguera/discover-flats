@@ -1,4 +1,3 @@
-import './App.css';
 import { useState, useEffect } from 'react';
 import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import { ColorModeContext, useMode } from './contexts/ThemeContext';
@@ -12,14 +11,16 @@ import FavoriteList from './pages/favorites/FavoriteList';
 import Profile from './pages/profile/Profile';
 import Login from './pages/profile/Login';
 import SignUp from './pages/profile/SignUp';
-import Footer from './pages/main/Footer';
 import UserContext from './contexts/UserContext';
+import FavoriteContext from './contexts/FavoriteContex';
+import './index.css';
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [errors, setErrors] = useState([]);
+  //const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
   const [properties, setProperties] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   
   // set user fetch request
@@ -31,6 +32,17 @@ function App() {
       setUser(json);
     }
     fetchUser()
+  }, [])
+  
+  // set favorite fetch request
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      const res = await fetch('/favorites');
+      if (!res.ok) throw new Error(res.statusText);
+      const json = await res.json();
+      setFavorites(json);
+    }
+    fetchFavorites()
   }, [])
 
   // properties fetch request
@@ -55,17 +67,18 @@ function App() {
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
         <UserContext.Provider value={{ user, setUser }}>
-          <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
-            <Route path='/properties/:id' element={<PropertyPage />} />   
-            <Route path='/favorites' element={<FavoriteList />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<SignUp /> } />
-          </Routes>
-          <Footer />
+          <FavoriteContext.Provider value={{ favorites, setFavorites }}>
+            <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
+              <Route path='/properties/:id' element={<PropertyPage />} />   
+              <Route path='/favorites' element={<FavoriteList />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<SignUp /> } />
+            </Routes>
+          </FavoriteContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </ColorModeContext.Provider>

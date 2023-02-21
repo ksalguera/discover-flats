@@ -4,5 +4,7 @@ class PropertySerializer < ActiveModel::Serializer
   :cat_fee, :cat_deposit, :admin_fee, :application_fee, :description
 
   has_many :images
+  has_many :favorites
+  has_many :users, through: :favorites
   
 end

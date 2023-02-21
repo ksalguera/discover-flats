@@ -11,7 +11,7 @@ const Profile = () => {
   return (
     <Box mx={2}>
       { user === null ?
-        <div>No user data available.</div>
+        <div>Not Authorized.</div>
         : 
         <>
           <PageTitle title={`Welcome, ${user.greeting}`} />
