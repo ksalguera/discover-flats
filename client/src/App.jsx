@@ -18,7 +18,6 @@ import './index.css';
 function App() {
   const [theme, colorMode] = useMode();
   const [loading, setLoading] = useState(true);
-  //const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
   const [properties, setProperties] = useState([]);
   const [favorites, setFavorites] = useState([]);
@@ -57,7 +56,7 @@ function App() {
       setProperties(json);
     }
 
-    fetchProperties()
+    fetchProperties();
   }, [])
 
   // updates properties based on search value field 

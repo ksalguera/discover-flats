@@ -21,7 +21,8 @@ const PropertyPage = () => {
   }, []);
 
   const address = property.full_address;
-  let searchableAddress = address ? address.replaceAll(' ', '+') : 'Loading...';
+  //let searchableAddress = address ? address.replaceAll(' ', '+') : 'Loading...';
+ // let searchableAddress = address.replaceAll(' ', '+');
 
   return (
     <Box mx={2}>
@@ -29,7 +30,7 @@ const PropertyPage = () => {
         <Link underline='hover' href='/properties'>Properties</Link>
         <Typography color='text.primary'>{property.name}</Typography>
       </Breadcrumbs>
-      <Typography variant='h2'>{property.name}</Typography>
+      <Typography variant='h2'>{property.name}</Typography> 
       <Typography sx={{ fontSize: 14 }} color='text.primary' mb={1}>{property.full_address}</Typography>
       <PropertyGallery mainImg={property.image_url} images={property.images} />
       <SectionTitle title='Description' />
@@ -38,7 +39,7 @@ const PropertyPage = () => {
       <Typography variant='body1'>
         Website: <a href={property.website} target='_blank'>{property.website}</a><br />
         Phone Number: {property.phone_number} <br />
-        Address: <a href={`http://maps.google.com/maps?q=${searchableAddress}`} target='_blank'>{property.full_address}</a>
+        {/* Address: <a href={`http://maps.google.com/maps?q=${searchableAddress}`} target='_blank'>{property.full_address}</a> */}
       </Typography>
       <SectionTitle title='Pet Information' />
       <Typography variant='body1'>
@@ -57,7 +58,7 @@ const PropertyPage = () => {
       <Typography variant='body1'>
         Admin: {property.admin_fee === 0 ? 'None' : `$${property.admin_fee}`} <br />
         Application: {property.application_fee === 0 ? 'None' : `$${property.application_fee}`} <br />
-      </Typography>
+      </Typography> 
     </Box>
   )
 }
