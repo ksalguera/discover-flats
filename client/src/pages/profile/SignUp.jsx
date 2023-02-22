@@ -3,6 +3,7 @@ import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, FormControlLabel, Checkbox, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const initialState = { 
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [formData, setFormData] = useState(initialState);
   const [checked, setChecked] = useState(false);
   const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
   const handleCheckedChange = e => {
@@ -37,6 +39,7 @@ const SignUp = () => {
           res.json().then(data => {
             setUser(data)
             setErrors([])
+            navigate('/')
           })
         } else {
           res.json().then(errorData => setErrors(errorData.errors))
