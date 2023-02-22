@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_213610) do
     t.integer "application_fee"
     t.integer "admin_fee"
     t.string "affordability"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

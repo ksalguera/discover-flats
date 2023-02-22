@@ -17,7 +17,7 @@ const Profile = () => {
         <p>Username: {user.username}</p>
         <p>Display Message: {user.greeting}</p>
         <p>Email: {user.email}</p>
-        { user.is_manager && <PropertyManager />}
+        { user.is_manager && <PropertyManager properties={user.properties} />}
       </Box>
       }
     </>

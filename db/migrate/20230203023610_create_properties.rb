@@ -23,6 +23,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
       t.integer :application_fee
       t.integer :admin_fee
       t.string :affordability
+      t.integer :user_id
       t.timestamps
     end
   end
