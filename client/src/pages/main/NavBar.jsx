@@ -2,19 +2,24 @@ import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 import { NavLink as RouterLink, useNavigate } from 'react-router-dom';
 import { Stack, Link, Button } from "@mui/material";
+import FavoriteContext from '../../contexts/FavoriteContex';
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
+  const { setFavorites } = useContext(FavoriteContext);
   const navigate = useNavigate();
   
   const handleLogOut = () => {
     const logOut = async () => {
       const res = await fetch('/logout', { method: 'DELETE' });
-      if (res.ok) setUser(null) 
+      if (res.ok) { 
+        setUser(null)
+        setFavorites([])
+      }
     }
 
     logOut()
-    navigate('/properties')
+    navigate('/')
   }
 
   // ----------------- Active Link Style ----------------- //
@@ -35,7 +40,7 @@ const NavBar = () => {
     <>
       <Stack direction='row' alignItems='center' spacing={2}>
         <Link component={RouterLink} underline='none' sx={navBarStyle} to='/properties'>Properties</Link>         
-        <Link component={RouterLink} underline='none' sx={navBarStyle} to='/favorites'>Favorties</Link>
+        {user && <Link component={RouterLink} underline='none' sx={navBarStyle} to='/favorites'>Favorties</Link> }
         { user && <Link component={RouterLink} underline='none' sx={navBarStyle} to='/profile'>Profile</Link> }
         { !user ?
           <Button variant='outlined' size='small' onClick={() => navigate('/login')}>Login</Button>

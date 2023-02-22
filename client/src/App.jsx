@@ -17,13 +17,14 @@ import './index.css';
 
 function App() {
   const [theme, colorMode] = useMode();
+  const [loading, setLoading] = useState(true);
   //const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
   const [properties, setProperties] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   
-  // set user fetch request
+  // set user when navigating back to app
   useEffect(() => {
     const fetchUser = async () => {
       const res = await fetch('/profile');
@@ -31,19 +32,21 @@ function App() {
       const json = await res.json();
       setUser(json);
     }
-    fetchUser()
+    fetchUser().catch(error => error.message)
   }, [])
   
-  // set favorite fetch request
+  // set favorites when navigating back to app
   useEffect(() => {
     const fetchFavorites = async () => {
+      setLoading(true)
       const res = await fetch('/favorites');
       if (!res.ok) throw new Error(res.statusText);
       const json = await res.json();
       setFavorites(json);
     }
-    fetchFavorites()
-  }, [])
+    fetchFavorites().catch(error => error.message)
+    setLoading(false)
+   }, [])
 
   // properties fetch request
   useEffect(() => {
@@ -69,15 +72,15 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
           <FavoriteContext.Provider value={{ favorites, setFavorites }}>
             <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} />
-            <Routes>
-              <Route path='/' element={<Home />} />
+            { loading ? <p>Loading...</p> : <Routes>
+              <Route path='/' element={<Home />} /> 
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
               <Route path='/properties/:id' element={<PropertyPage />} />   
               <Route path='/favorites' element={<FavoriteList />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp /> } />
-            </Routes>
+            </Routes>}
           </FavoriteContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>

@@ -18,6 +18,7 @@ const Home = () =>  {
   
       fetchProperties()
     }, []);
+    
   return (
     <>
       <Header />

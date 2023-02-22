@@ -4,13 +4,23 @@ import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
+import FavoriteContext from '../../contexts/FavoriteContex';
 
 const Login = () => {
   const initialState = { username: '', password: '' };
   const { setUser } = useContext(UserContext);
+  const { setFavorites } = useContext(FavoriteContext);
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
+  
+  // function to set favorites upon log in
+  const fetchFavorites = async () => {
+    const res = await fetch('/favorites');
+    if (!res.ok) throw new Error(res.statusText);
+    const json = await res.json();
+    setFavorites(json);
+  }
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
@@ -26,7 +36,8 @@ const Login = () => {
           res.json().then(data => {
             setUser(data)
             setErrors(null)
-            navigate('/properties')
+            fetchFavorites().catch(() => navigate('/'))
+            navigate('/')
           })
         } else {
           res.json().then(errorData => setErrors(errorData.errors))

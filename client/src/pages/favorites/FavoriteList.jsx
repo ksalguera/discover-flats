@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Box } from '@mui/material';
 import PropertyCard from '../../components/PropertyCard';
@@ -10,7 +10,7 @@ const FavoriteList = () => {
 
   return (
     <Box mx={2}>
-      <PageTitle title='Properties in Indianapolis' />
+      <PageTitle title='Favorites' />
       {favorites.length === 0 ? <h3>No Results Found</h3> :
       <Grid container spacing={2}>
         {favorites.map(favorite => {
