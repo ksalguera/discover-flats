@@ -23,9 +23,9 @@ const Home = () =>  {
     <>
       <Header />
       <Box mx={2}>
-        <Typography variant='h2'>Most Liked Properties</Typography>
+        {/* <Typography variant='h2'>Most Liked Properties</Typography>
         <Typography variant='h2'>Affordable Properties</Typography>
-        <Typography variant='h2'>Midrange Properteis</Typography>
+        <Typography variant='h2'>Midrange Properteis</Typography> */}
         <Typography variant='h2'>Luxury Properties</Typography> 
         <Grid container spacing={6} justifyContent='flex-start'>
           {luxury.slice(0,6).map(property => {

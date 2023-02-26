@@ -14,6 +14,14 @@ class PropertiesController < ApplicationController
     render json: property, methods: [:phone_number, :full_address]
   end
   
+  # POST /properties
+  def create
+    property = Property.create!(property_params)
+    property.user_id = session[:user_id]
+    property.save!
+    render json: property
+  end
+
   # custom routes 
 
   # GET /affordable_properties
@@ -32,6 +40,17 @@ class PropertiesController < ApplicationController
   def luxury
     properties = Property.where(affordability: 'luxury')
     render json: properties, methods: [:phone_number, :full_address]
+  end
+
+  private
+
+  def property_params
+    params.permit(:name, :image_url, :website, :phone_number_unformatted, 
+      :address_line_one, :address_line_two, :city, :state, :zip, :pet_limit, 
+      :dogs_allowed, :dog_restrictions, :dog_deposit, :dog_fee, 
+      :cats_allowed, :cat_restrictions, :cat_deposit, :cat_fee, 
+      :admin_fee, :application_fee, :affordability, :description
+    )
   end
   
 end

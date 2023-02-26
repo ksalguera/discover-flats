@@ -7,6 +7,7 @@ import TopBar from './pages/main/TopBar';
 import Home from './pages/main/Home';
 import PropertyList from './pages/properties/PropertyList';
 import PropertyPage from './pages/properties/PropertyPage';
+import PropertyForm from './pages/properties/PropertyForm';
 import FavoriteList from './pages/favorites/FavoriteList';
 import Profile from './pages/profile/Profile';
 import Login from './pages/profile/Login';
@@ -74,7 +75,8 @@ function App() {
             { loading ? <p>Loading...</p> : <Routes>
               <Route path='/' element={<Home />} /> 
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
-              <Route path='/properties/:id' element={<PropertyPage />} />   
+              <Route path='/properties/:id' element={<PropertyPage />} />
+              <Route path='/properties/new' element={<PropertyForm />} />
               <Route path='/favorites' element={<FavoriteList />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/login' element={<Login />} />
