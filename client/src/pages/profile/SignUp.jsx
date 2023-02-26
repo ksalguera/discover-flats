@@ -45,7 +45,7 @@ const SignUp = () => {
           res.json().then(errorData => setErrors(errorData.errors))
         }
       })
-    
+    console.log(formData)
     // clears form inputs after submit
     setFormData(initialState);
     setChecked(false);
@@ -102,7 +102,7 @@ const SignUp = () => {
             control={<Checkbox checked={checked} onChange={handleCheckedChange} />} 
             label='Select this box if you are a property manager'
           />
-          {errors.length > 0 && (
+          {(Array.isArray(errors) && errors.length > 0) && (
             <ul>
               {errors.map(error => <li key={error} style={{color: 'red'}}>{error}</li>)}
             </ul>

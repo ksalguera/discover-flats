@@ -5,7 +5,7 @@ import PageTitle from '../../components/PageTitle';
 import SectionTitle from '../../components/SectionTitle';
 import PropertyManager from './PropertyManager';
 
-const Profile = () => {
+const Profile = ({properties}) => {
   const { user } = useContext(UserContext);
 
   return (
@@ -17,7 +17,7 @@ const Profile = () => {
         <p>Username: {user.username}</p>
         <p>Display Message: {user.greeting}</p>
         <p>Email: {user.email}</p>
-        { user.is_manager && <PropertyManager properties={user.properties} />}
+        { user.is_manager && <PropertyManager properties={properties} />}
       </Box>
       }
     </>

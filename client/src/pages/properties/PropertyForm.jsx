@@ -48,21 +48,18 @@ const PropertyForm = () => {
         if (res.ok) {
           res.json().then(data => {
             setErrors([])
-            // navigate('/')
             setFormData(initialState)
+            navigate('/profile')
           })
         } else {
           res.json().then(errorData => setErrors(errorData.errors))
         }
       })
-    
-    // clears form inputs after submit
-    console.log(formData)
   } 
 
   return (
     <>
-      { !user ? <Typography variant='body1' mx={2}>Not Authorized.</Typography> :
+      { !user.is_manager ? <Typography variant='body1' mx={2}>Not Authorized.</Typography> :
       <Box mx={2} mt={5} sx={{ display: 'flex' }}>
           <FormControl component='form' sx={{ display: 'flex', width: '400px'  }} onSubmit={handleSubmit}>
             <SectionTitle title='ADD A PROPERTY' />
@@ -286,7 +283,7 @@ const PropertyForm = () => {
               />
 
 
-            {errors.length > 0 && (
+            {(Array.isArray(errors) && errors.length > 0) && (
               <ul>
                 {errors.map(error => <li key={error} style={{color: 'red'}}>{error}</li>)}
               </ul>

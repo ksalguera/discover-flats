@@ -78,7 +78,7 @@ function App() {
               <Route path='/properties/:id' element={<PropertyPage />} />
               <Route path='/properties/new' element={<PropertyForm />} />
               <Route path='/favorites' element={<FavoriteList />} />
-              <Route path='/profile' element={<Profile />} />
+              <Route path='/profile' element={<Profile properties={updatedProperties} />} />
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp /> } />
             </Routes>}

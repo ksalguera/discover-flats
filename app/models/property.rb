@@ -4,9 +4,10 @@ class Property < ApplicationRecord
   has_many :images
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
+  
   validates :name, { presence: true, uniqueness: true }
   validates :affordability, inclusion: { in: ['affordable', 'midrange', 'luxury'] }
-  validates :description, { presence: true, length: { minimum: 20, maximum: 350 } }
+  validates :description, { presence: true, length: { minimum: 20, maximum: 500 } }
   validates :website, { presence: true, uniqueness: true }
   validates :phone_number_unformatted, { presence: true, length: {is: 10 } }
   validates :address_line_one, { presence: true, length: { minimum: 2, maximum: 30 } }
@@ -16,13 +17,7 @@ class Property < ApplicationRecord
   validates :zip, { presence: true, length: { is: 5 } }
   validates :image_url, presence: true
   validates :dogs_allowed, inclusion: [true, false]
-  validates :dog_restrictions, presence: true, if: :dogs_allowed
-  validates :dog_fee, { presence: true, if: :dogs_allowed, inclusion: { in: 1..100 } }
-  validates :dog_deposit, { presence: true, if: :dogs_allowed, inclusion: { in: 1..700 } }
   validates :cats_allowed, inclusion: [true, false]
-  validates :cat_restrictions, presence: true, if: :cats_allowed
-  validates :cat_fee, { presence: true, if: :cats_allowed, inclusion: { in: 1..100 } }
-  validates :cat_deposit, { presence: true, if: :cats_allowed, inclusion: { in: 1..700 } }
   validates :pet_limit, { presence: true, if: lambda { |property| property.dogs_allowed || property.cats_allowed }, inclusion:  { in: 1..10 } }
   validates :admin_fee, { presence: true, inclusion: { in: 1..400 } }
   validates :application_fee, { presence: true, inclusion: { in: 1..400 } }
