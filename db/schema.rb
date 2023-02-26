@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_213610) do
     t.string "name"
     t.string "image_url"
     t.string "website"
-    t.string "phone_number_unformatted"
+    t.string "phone_number"
     t.string "address_line_one"
     t.string "address_line_two"
     t.string "city"

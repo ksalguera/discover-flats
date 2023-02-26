@@ -5,13 +5,13 @@ class PropertiesController < ApplicationController
   # GET /properties
   def index
     properties = Property.all
-    render json: properties, methods: [:phone_number, :full_address]
+    render json: properties, methods: [:full_address]
   end
 
   # GET /properties/:id
   def show
     property = Property.find(params[:id])
-    render json: property, methods: [:phone_number, :full_address]
+    render json: property, methods: [:full_address]
   end
   
   # POST /properties
@@ -19,6 +19,12 @@ class PropertiesController < ApplicationController
     property = Property.create!(property_params)
     property.user_id = session[:user_id]
     property.save!
+    render json: property
+  end
+
+  def update
+    property = Property.find(params[:id])
+    property.update!(property_params)
     render json: property
   end
 
@@ -50,7 +56,7 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.permit(:name, :image_url, :website, :phone_number_unformatted, 
+    params.permit(:name, :image_url, :website, :phone_number, 
       :address_line_one, :address_line_two, :city, :state, :zip, :pet_limit, 
       :dogs_allowed, :dog_restrictions, :dog_deposit, :dog_fee, 
       :cats_allowed, :cat_restrictions, :cat_deposit, :cat_fee, 

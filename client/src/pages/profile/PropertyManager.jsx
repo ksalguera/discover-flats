@@ -41,7 +41,7 @@ const PropertyManager = ({ properties, onPropertyDelete }) => {
                   <Typography variant='h3'><ApartmentIcon /> {property.name}</Typography>
                     <Stack direction='row' spacing={1}>
                       <Button color='secondary' variant='outlined' size='small' onClick={() => navigate(`/properties/${property.id}`)}>View</Button>
-                      <Button color='success' variant='outlined' size='small' onClick={handleEdit}>Edit</Button>
+                      <Button color='success' variant='outlined' size='small' onClick={() => navigate(`/properties/${property.id}/edit`)}>Edit</Button>
                       <Button color='error' variant='outlined' size='small' onClick={() => handleDelete(property.id)}>Delete</Button>
                   </Stack>
                 </Stack>

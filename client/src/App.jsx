@@ -15,6 +15,7 @@ import SignUp from './pages/profile/SignUp';
 import UserContext from './contexts/UserContext';
 import FavoriteContext from './contexts/FavoriteContex';
 import './index.css';
+import PropertyEditForm from './pages/properties/PropertyEditForm';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -65,6 +66,12 @@ function App() {
   const filteredProperties = properties.filter(property => property.name.toLowerCase().includes(updatedSearchValue));
   const updatedProperties = searchValue === '' ? properties : filteredProperties;
  
+  // handle property edit
+  const handlePropertyEdit = updatedProperty => {
+    const updatedProperties = properties.map(property => property.id === updatedProperty.id ? updatedProperty : property)
+    setProperties(updatedProperties)
+  }
+
   // handle property post 
   const handlePropertyAdd = newProperty => setProperties([...properties, newProperty]);
   
@@ -85,6 +92,7 @@ function App() {
               <Route path='/' element={<Home />} /> 
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
               <Route path='/properties/:id' element={<PropertyPage />} />
+              <Route path='/properties/:id/edit' element={<PropertyEditForm onPropertyEdit={handlePropertyEdit} />} />
               <Route path='/properties/new' element={<PropertyForm onPropertyAdd={handlePropertyAdd} />} />
               <Route path='/favorites' element={<FavoriteList />} />
               <Route path='/profile' element={<Profile properties={updatedProperties} onPropertyDelete={handlePropertyDelete} />} />

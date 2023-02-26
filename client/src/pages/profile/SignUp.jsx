@@ -45,7 +45,7 @@ const SignUp = () => {
           res.json().then(errorData => setErrors(errorData.errors))
         }
       })
-    console.log(formData)
+ 
     // clears form inputs after submit
     setFormData(initialState);
     setChecked(false);
