@@ -3,7 +3,6 @@ class PropertySerializer < ActiveModel::Serializer
   :dogs_allowed, :dog_restrictions, :dog_fee, :dog_deposit, :cats_allowed, :cat_restrictions,
   :cat_fee, :cat_deposit, :admin_fee, :application_fee, :description
   
-  belongs_to :user
   has_many :images
   has_many :favorites
   has_many :users, through: :favorites

@@ -35,10 +35,7 @@ const PropertyForm = () => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
 
-  const handleInputChange = e => {
-    const parsedValue = isNaN(e.target.value) ? e.target.value : parseFloat(e.target.value);
-    setFormData({...formData, [e.target.name]: e.target.value});
-  }
+  const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -52,6 +49,7 @@ const PropertyForm = () => {
           res.json().then(data => {
             setErrors([])
             // navigate('/')
+            setFormData(initialState)
           })
         } else {
           res.json().then(errorData => setErrors(errorData.errors))
@@ -60,7 +58,6 @@ const PropertyForm = () => {
     
     // clears form inputs after submit
     console.log(formData)
-    setFormData(initialState);
   } 
 
   return (
@@ -126,7 +123,6 @@ const PropertyForm = () => {
                 onChange={handleInputChange}
               />
               <TextField 
-                required
                 fullWidth
                 margin='dense'  
                 label='Address Line Two'
