@@ -4,7 +4,7 @@ import { Box, FormControl, FormLabel, Button, TextField, FormControlLabel, Input
 import SectionTitle from '../../components/SectionTitle';
 import { useNavigate } from 'react-router-dom';
 
-const PropertyForm = () => {
+const PropertyForm = ({ onPropertyAdd }) => {
   const { user } = useContext(UserContext);
   const initialState = { 
     name: '', 
@@ -48,6 +48,7 @@ const PropertyForm = () => {
         if (res.ok) {
           res.json().then(data => {
             setErrors([])
+            onPropertyAdd(data)
             setFormData(initialState)
             navigate('/profile')
           })
@@ -59,7 +60,7 @@ const PropertyForm = () => {
 
   return (
     <>
-      { !user.is_manager ? <Typography variant='body1' mx={2}>Not Authorized.</Typography> :
+      { (!user || !user.is_manager) ? <Typography variant='body1' mx={2}>Not Authorized.</Typography> :
       <Box mx={2} mt={5} sx={{ display: 'flex' }}>
           <FormControl component='form' sx={{ display: 'flex', width: '400px'  }} onSubmit={handleSubmit}>
             <SectionTitle title='ADD A PROPERTY' />

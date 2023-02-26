@@ -7,19 +7,22 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 
-const PropertyManager = ({ properties }) => {
+const PropertyManager = ({ properties, onPropertyDelete }) => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const ownedProperties = properties.filter(property => property.user_id === user.id)
 
   const handleEdit = () => {
     console.log('working')
   }
 
-  const handleDelete = () => {
-    console.log('working')
+  const handleDelete = (id) => {
+    const deleteProperty = async () => {
+      const res = await fetch(`/properties/${id}`, { method: 'DELETE' });
+      if (res.ok) { onPropertyDelete(id)}
+    }
+    deleteProperty();
   }
-
-  const ownedProperties = properties.filter(property => property.user_id === user.id)
 
   return (
     <>
@@ -27,7 +30,7 @@ const PropertyManager = ({ properties }) => {
         <SectionTitle title='Property Manager Dashboard' />
         <Button color='secondary' size='small' onClick={() => navigate('/properties/new')}><AddIcon />Add a Property</Button>
       </Stack>
-      { !ownedProperties ? <Typography variant='body1'>No Properties Available</Typography>
+      { ownedProperties.length === 0 ? <Typography variant='body1'>No Properties Available</Typography>
         : 
         <>
           <Stack mt={2} spacing={3}>
@@ -39,7 +42,7 @@ const PropertyManager = ({ properties }) => {
                     <Stack direction='row' spacing={1}>
                       <Button color='secondary' variant='outlined' size='small' onClick={() => navigate(`/properties/${property.id}`)}>View</Button>
                       <Button color='success' variant='outlined' size='small' onClick={handleEdit}>Edit</Button>
-                      <Button color='error' variant='outlined' size='small' onClick={handleDelete}>Delete</Button>
+                      <Button color='error' variant='outlined' size='small' onClick={() => handleDelete(property.id)}>Delete</Button>
                   </Stack>
                 </Stack>
               )

@@ -64,6 +64,15 @@ function App() {
   const updatedSearchValue = searchValue.toLowerCase();
   const filteredProperties = properties.filter(property => property.name.toLowerCase().includes(updatedSearchValue));
   const updatedProperties = searchValue === '' ? properties : filteredProperties;
+ 
+  // handle property post 
+  const handlePropertyAdd = newProperty => setProperties([...properties, newProperty]);
+  
+  // handle property delete
+  const handlePropertyDelete = id => {
+    const updatedProperties = properties.filter(property => property.id !== id);
+    setProperties(updatedProperties);
+  }
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -76,9 +85,9 @@ function App() {
               <Route path='/' element={<Home />} /> 
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
               <Route path='/properties/:id' element={<PropertyPage />} />
-              <Route path='/properties/new' element={<PropertyForm />} />
+              <Route path='/properties/new' element={<PropertyForm onPropertyAdd={handlePropertyAdd} />} />
               <Route path='/favorites' element={<FavoriteList />} />
-              <Route path='/profile' element={<Profile properties={updatedProperties} />} />
+              <Route path='/profile' element={<Profile properties={updatedProperties} onPropertyDelete={handlePropertyDelete} />} />
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp /> } />
             </Routes>}

@@ -22,6 +22,11 @@ class PropertiesController < ApplicationController
     render json: property
   end
 
+  def destroy
+    Property.find(params[:id]).destroy
+    head :no_content
+  end
+
   # custom routes 
 
   # GET /affordable_properties
