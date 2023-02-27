@@ -71,7 +71,6 @@ const [formData, setFormData] = useState({});
           res.json().then(data => {
             setErrors([])
             onPropertyEdit(data)
-            // setFormData(initialState)
             navigate('/profile')
           })
         } else {
