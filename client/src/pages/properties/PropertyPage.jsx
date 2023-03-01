@@ -20,9 +20,8 @@ const PropertyPage = () => {
     fetchProperty()
   }, []);
 
-  const address = property.full_address;
-  //let searchableAddress = address ? address.replaceAll(' ', '+') : 'Loading...';
- // let searchableAddress = address.replaceAll(' ', '+');
+  const searchableAddress = property.full_address ? property.full_address.replaceAll(' ', '+') : '';
+  const formattedPhone = property.phone_number ? property.phone_number.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') : '';
 
   return (
     <Box mx={2}>
@@ -38,26 +37,26 @@ const PropertyPage = () => {
       <SectionTitle title='Contact' />
       <Typography variant='body1'>
         Website: <a href={property.website} target='_blank'>{property.website}</a><br />
-        Phone Number: {property.phone_number} <br />
-        {/* Address: <a href={`http://maps.google.com/maps?q=${searchableAddress}`} target='_blank'>{property.full_address}</a> */}
+        Phone Number: {formattedPhone} <br />
+        Address: <a href={`http://maps.google.com/maps?q=${searchableAddress}`} target='_blank'>{property.full_address}</a>
       </Typography>
       <SectionTitle title='Pet Information' />
       <Typography variant='body1'>
-        Number of Pets Allowed: {property.pet_limit} <br />
         Dogs Allowed: {property.dogs_allowed ? 'Yes' : 'No'} <br />
-        Dogs Restrictions: {property.dog_restrictions} <br />
-        Monthly Dog Fee: {property.dog_fee === 0 ? 'None' : `$${property.dog_fee}`} <br />
-        One-Time Dog Deposit: {property.dog_deposit === 0 ? 'None' : `$${property.dog_deposit}`} <br />
+        Dogs Restrictions: {!property.dog_restrictions ? 'None' : property.dog_restrictions} <br />
+        Monthly Dog Fee: {!property.dog_fee ? 'None' : `$${property.dog_fee}`} <br />
+        One-Time Dog Deposit: {!property.dog_deposit ? 'None' : `$${property.dog_deposit}`} <br />
         Cats Allowed: {property.cats_allowed ? 'Yes' : 'No'} <br />
-        Cats Restrictions: {property.cat_restrictions} <br />
-        Monthly Cat Fee: {property.cat_fee === 0 ? 'None' : `$${property.cat_fee}`} <br />
-        One-Time Cat Deposit: {property.cat_deposit === 0 ? 'None' : `$${property.cat_deposit}`} <br />
+        Cats Restrictions: {!property.cat_restrictions ? 'None' : property.cat_restrictions} <br />
+        Monthly Cat Fee: {!property.cat_fee ? 'None' : `$${property.cat_fee}`} <br />
+        One-Time Cat Deposit: {!property.cat_deposit ? 'None' : `$${property.cat_deposit}`} <br />
+        Number of Pets Allowed: {property.pet_limit} <br />
         Please contact the property for more information.
       </Typography>
       <SectionTitle title='Standard Fees' />
       <Typography variant='body1'>
-        Admin: {property.admin_fee === 0 ? 'None' : `$${property.admin_fee}`} <br />
-        Application: {property.application_fee === 0 ? 'None' : `$${property.application_fee}`} <br />
+        Admin: {`$${property.admin_fee}`} <br />
+        Application: {`$${property.application_fee}`} <br />
       </Typography> 
     </Box>
   )

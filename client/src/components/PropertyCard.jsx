@@ -37,6 +37,7 @@ function PropertyCard({ propertyId, name, image, address, phone }) {
     setChecked(isChecked);
   }
   
+  const formattedPhone = phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
   
   return (
     <Card sx={{ minWidth: 275, maxWidth: 450 }}>
@@ -51,7 +52,7 @@ function PropertyCard({ propertyId, name, image, address, phone }) {
             checked={checked} 
           /> }
         </Stack>
-        <Typography sx={{ fontSize: 14 }} color='text.secondary'>{address}<br />{phone}</Typography>
+        <Typography sx={{ fontSize: 14 }} color='text.secondary'>{address}<br />{formattedPhone}</Typography>
         <Stack direction='row' alignItems='center' justifyContent='space-between' spacing={2} mt={2}>
           <Typography sx={{ fontSize: 14 }} color='text.secondary'>1 Unit Available</Typography>
           <Button size='small' onClick={() => navigate(`/properties/${propertyId}`)}>Learn More</Button>
