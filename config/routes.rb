@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api do
+  #namespace :api do
     resources :images, only: [:create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
     resources :properties
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     get 'affordable_properties', to: 'properties#affordable'
     get 'midrange_properties', to: 'properties#midrange'
     get 'luxury_properties', to: 'properties#luxury'
-  end
+  #end
 
-  #root 'properties#index'
-  get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
+  root 'properties#index'
+  #get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
