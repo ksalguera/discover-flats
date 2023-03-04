@@ -3,7 +3,7 @@ import UserContext from '../../contexts/UserContext';
 import { Box, Typography } from '@mui/material';
 import PageTitle from '../../components/PageTitle';
 import SectionTitle from '../../components/SectionTitle';
-import PropertyManager from './PropertyManager';
+import PropertyManager from '../properties/PropertyManager';
 
 const Profile = ({ properties, onPropertyDelete }) => {
   const { user } = useContext(UserContext);

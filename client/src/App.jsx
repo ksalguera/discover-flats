@@ -16,6 +16,7 @@ import UserContext from './contexts/UserContext';
 import FavoriteContext from './contexts/FavoriteContex';
 import './index.css';
 import PropertyEditForm from './pages/properties/PropertyEditForm';
+import ImageEditForm from './pages/properties/ImageEditForm';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -93,6 +94,7 @@ function App() {
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
               <Route path='/properties/:id' element={<PropertyPage />} />
               <Route path='/properties/:id/edit' element={<PropertyEditForm onPropertyEdit={handlePropertyEdit} />} />
+              <Route path='/properties/:id/images' element={<ImageEditForm />} />
               <Route path='/properties/new' element={<PropertyForm onPropertyAdd={handlePropertyAdd} />} />
               <Route path='/favorites' element={<FavoriteList />} />
               <Route path='/profile' element={<Profile properties={updatedProperties} onPropertyDelete={handlePropertyDelete} />} />
