@@ -15,6 +15,9 @@ gem 'puma', '~> 5.0'
 # Use serializers to generate JSON in an object-oriented manner
 gem 'active_model_serializers', '~> 0.10.2'
 
+# Use to validate URLs
+gem 'validate_url', '~> 1.0', '>= 1.0.15'
+
 # Process manager for applications with multiple components
 gem 'foreman', '~> 0.87.2'
 

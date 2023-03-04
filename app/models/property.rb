@@ -8,14 +8,14 @@ class Property < ApplicationRecord
   validates :name, { presence: true, uniqueness: true }
   validates :affordability, inclusion: { in: ['affordable', 'midrange', 'luxury'] }
   validates :description, { presence: true, length: { minimum: 20, maximum: 500 } }
-  validates :website, { presence: true, uniqueness: true }
+  validates :website, { presence: true, uniqueness: true, url: true }
   validates :phone_number, { presence: true, length: {is: 10 } }
   validates :address_line_one, { presence: true, length: { minimum: 2, maximum: 30 } }
   validates :address_line_two, length: { maximum: 15 }
   validates :city, { presence: true, length: { minimum: 2, maximum: 17 } }
   validates :state, { presence: true, length: { is: 2 } }
   validates :zip, { presence: true, length: { is: 5 } }
-  validates :image_url, presence: true
+  validates :image_url, { presence: true, url: true } 
   validates :dogs_allowed, inclusion: [true, false]
   validates :cats_allowed, inclusion: [true, false]
   validates :pet_limit, { presence: true, if: lambda { |property| property.dogs_allowed || property.cats_allowed }, inclusion:  { in: 1..10 } }
