@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { TextField, InputAdornment, FormControl, InputLabel, Select, MenuItem, Snackbar, Alert } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-const SearchBox = ({ properties, searchValue, setSearchValue }) => {
+const SearchBox = ({ searchValue, setSearchValue }) => {
+  const [open, setOpen] = useState(false);
   const [beds, setBeds] = useState('');
   const [baths, setBaths] = useState('');
   const navigate = useNavigate();
@@ -14,14 +15,19 @@ const SearchBox = ({ properties, searchValue, setSearchValue }) => {
   }
 
   const handleChange = (event) => {
-    setBeds(event.target.value);
+    //setBeds(event.target.value);
+    setOpen(true);
   };
 
   const handleChangeTwo = (event) => {
-    setBaths(event.target.value);
+    //setBaths(event.target.value);
+    setOpen(true);
   };
 
-  console.log(baths)
+  const handleClose = reason => {
+    if (reason === 'clickaway') { return }
+    setOpen(false);
+  };
 
   return (
     <>
@@ -73,6 +79,9 @@ const SearchBox = ({ properties, searchValue, setSearchValue }) => {
           <MenuItem value={3}>3 Bath</MenuItem>
         </Select>
       </FormControl>
+      <Snackbar open={open} anchorOrigin={{ vertical: 'top', horizontal: 'center' }} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity='info' sx={{ width: '100%' }}>Floorplan search is coming soon.</Alert>
+      </Snackbar>
     </>
   )
 }
