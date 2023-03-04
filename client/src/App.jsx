@@ -90,7 +90,7 @@ function App() {
           <FavoriteContext.Provider value={{ favorites, setFavorites }}>
             <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} />
             { loading ? <p>Loading...</p> : <Routes>
-              <Route path='/' element={<Home />} /> 
+              <Route path='/' element={<Home properties={updatedProperties} />} /> 
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
               <Route path='/properties/:id' element={<PropertyPage />} />
               <Route path='/properties/:id/edit' element={<PropertyEditForm onPropertyEdit={handlePropertyEdit} />} />

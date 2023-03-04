@@ -4,28 +4,16 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Header from './Header';
 import PropertyCard from '../../components/PropertyCard';
 
-const Home = () =>  {
+const Home = ({ properties }) =>  {
   const [affordable, setAffordable] = useState([]);
   const [midrange, setMidrange] = useState([]);
   const [luxury, setLuxury] = useState([]);
-
-    // properties fetch request
-    useEffect(() => {
-      const fetchProperties = async () => {
-        const urls = ['/affordable_properties', '/midrange_properties', '/luxury_properties']
-        const req = urls.map(url => fetch(url))
-        // const res = await fetch('/luxury_properties');
-        // if (!res.ok) throw new Error(res.statusText);
-        // const json = await res.json();
-        const responses = await Promise.all(req);
-        const json = await Promise.all(responses.map(res => res.json()));
-        setAffordable(json[0])
-        setMidrange(json[1])
-        setLuxury(json[2])
-      }
-  
-      fetchProperties()
-    }, []);
+ 
+  useEffect(() => {
+    setAffordable(properties.filter(property => property.affordability === 'affordable'));
+    setMidrange(properties.filter(property => property.affordability === 'midrange'));
+    setLuxury(properties.filter(property => property.affordability === 'luxury'));
+  }, [properties])
     
   return (
     <>
