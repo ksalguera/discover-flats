@@ -1,4 +1,4 @@
-import { useParams, NavLink as RouterLink } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import PropertyGallery from './PropertyGallery';
@@ -6,6 +6,7 @@ import SectionTitle from '../../components/SectionTitle';
 
 const PropertyPage = () => {
   let { id } = useParams();
+  const navigate = useNavigate();
   const [property, setProperty] = useState([]);
 
   // properties/:id fetch request
@@ -26,7 +27,8 @@ const PropertyPage = () => {
   return (
     <Box mx={2}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' mb={2}>
-        <Link component={RouterLink} underline='hover' href='/properties'>Properties</Link>
+        <Link onClick={() => navigate('/properties')}>Properties</Link>
+        {/* <Link component={RouterLink} underline='hover' href='/properties'>Properties</Link> */}
         <Typography color='text.primary'>{property.name}</Typography>
       </Breadcrumbs>
       <Typography variant='h2'>{property.name}</Typography> 
