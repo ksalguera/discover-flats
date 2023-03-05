@@ -1,12 +1,16 @@
 # Discover Flats
 
 ## Project Overview
+Full Stack Apartment Search Application Utilizing Rails and React.
+
 Project is built using the following:
-* React
-* Material UI
-* Ruby on Rails
-* Active Record
-* PostgreSQL
+* Frontend: React, React Router v6, Material UI
+* Backend: Ruby on Rails, Active Record, PostgreSQL
+
+## Project Preview
+
+### Home Page
+![Home](https://imgur.com/VpQnVPI.jpg)
 
 ## Database Overview
 Database is setup to use the following seed data:
@@ -20,7 +24,7 @@ Database is setup to use the following seed data:
 
 ### Properties - CRUD: Create, Read, Update, Delete
 **INDEX** /properties \
-**SHOW** /properties/:id \ 
+**SHOW** /properties/:id \
 **CREATE** /properties (Locked with Authorization) \
 **UPDATE** /properties/:id (Locked with Authorization) \
 **DESTROY** /properties/:id (Locked with Authorization)
@@ -28,7 +32,7 @@ Database is setup to use the following seed data:
 **CREATE** /images (Locked with Authorization) \
 **DESTROY** /images/:id (Locked with Authorization)
 ### Users - CRUD: Create, Read
-**SHOW** /users/:id (Locked with Authorization) \ 
+**SHOW** /users/:id (Locked with Authorization) \
 **CREATE** /users  \
 ### Favorites - CRUD: Create, Read, Delete
 **INDEX** /favorites (Locked with Authorization)  \
