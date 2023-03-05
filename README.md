@@ -1,7 +1,7 @@
 # Discover Flats
 
 ## Project Overview
-Full Stack Apartment Search Application Utilizing Rails and React.
+Full stack apartment search application utilizing rails and react.
 * Frontend: React, React Router v6, Material UI
 * Backend: Ruby on Rails, Active Record, PostgreSQL
 
@@ -9,8 +9,8 @@ User Stories
 * General user can create a profile
 * General user can login and logout via sessions
 * General user can add and remove favorites
-* Users with manager access can create, update, and delete a property
-* Users with manager access can add and remove property images
+* User with manager access can create, update, and delete a property
+* User with manager access can add and remove property images
 
 ## Project Preview
 
