@@ -28,7 +28,6 @@ const PropertyPage = () => {
     <Box mx={2}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' mb={2}>
         <Link onClick={() => navigate('/properties')}>Properties</Link>
-        {/* <Link component={RouterLink} underline='hover' href='/properties'>Properties</Link> */}
         <Typography color='text.primary'>{property.name}</Typography>
       </Breadcrumbs>
       <Typography variant='h2'>{property.name}</Typography> 
