@@ -1,4 +1,4 @@
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams, NavLink as RouterLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
 import PropertyGallery from './PropertyGallery';
