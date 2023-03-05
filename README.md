@@ -2,15 +2,28 @@
 
 ## Project Overview
 Full Stack Apartment Search Application Utilizing Rails and React.
-
-Project is built using the following:
 * Frontend: React, React Router v6, Material UI
 * Backend: Ruby on Rails, Active Record, PostgreSQL
 
+User Stories
+* General user can create a profile
+* General user can login and logout via sessions
+* General user can add and remove favorites
+* Users with manager access can create, update, and delete a property
+* Users with manager access can add and remove property images
+
 ## Project Preview
+
+### Deployed Web Application: [Discover Flats](https://discover-flats-app.onrender.com)
 
 ### Home Page
 ![Home](https://imgur.com/VpQnVPI.jpg)
+
+### Property Detail Page
+![Property Detail](https://imgur.com/P0S4pJv.jpg)
+
+### Property Manager Dashboard
+![Property Manager Dashboard](https://imgur.com/loyqGI0.jpg)
 
 ## Database Overview
 Database is setup to use the following seed data:
@@ -33,7 +46,7 @@ Database is setup to use the following seed data:
 **DESTROY** /images/:id (Locked with Authorization)
 ### Users - CRUD: Create, Read
 **SHOW** /users/:id (Locked with Authorization) \
-**CREATE** /users  \
+**CREATE** /users
 ### Favorites - CRUD: Create, Read, Delete
 **INDEX** /favorites (Locked with Authorization)  \
 **CREATE** /favorites (Locked with Authorization) \
