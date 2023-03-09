@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import FavoriteContext from '../contexts/FavoriteContex';
 import UserContext from '../contexts/UserContext';
 
-function PropertyCard({ propertyId, name, image, address, phone }) {
+function PropertyCard({ propertyId, name, image, address, cityStateZip, phone }) {
   const { favorites, setFavorites } = useContext(FavoriteContext); 
   // checks to see if a property is currently in a user's saved favorites - returns true or false
   const isFavorite = favorites.some(favorite => favorite.property.id === propertyId);
@@ -52,7 +52,7 @@ function PropertyCard({ propertyId, name, image, address, phone }) {
             checked={checked} 
           /> }
         </Stack>
-        <Typography sx={{ fontSize: 14 }} color='text.secondary'>{address}<br />{formattedPhone}</Typography>
+        <Typography sx={{ fontSize: 14 }} color='text.secondary'>{address}<br />{cityStateZip}<br />{formattedPhone}</Typography>
         <Stack direction='row' alignItems='center' justifyContent='space-between' spacing={2} mt={2}>
           <Typography sx={{ fontSize: 14 }} color='text.secondary'>1 Unit Available</Typography>
           <Button size='small' onClick={() => navigate(`/properties/${propertyId}`)}>Learn More</Button>

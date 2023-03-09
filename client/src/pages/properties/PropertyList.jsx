@@ -17,7 +17,8 @@ const PropertyList = ({ properties }) => {
                 propertyId={property.id}
                 name={property.name}
                 image={property.image_url}
-                address={property.full_address}
+                address={property.address_line_one}
+                cityStateZip={`${property.city}, ${property.state} ${property.zip}`}
                 phone={property.phone_number}
               />
             </Grid>
