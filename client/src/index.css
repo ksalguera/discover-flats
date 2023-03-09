@@ -15,12 +15,6 @@ a:hover {
   color: LinkText;
 }
 
-#headerImg {
-  max-height: 350px;
-  width: 100%;
-  object-fit: cover;
-}
-
 #propertyPageImg {
   max-width: 800px;
   max-height: 600px;

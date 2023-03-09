@@ -21,7 +21,7 @@ const Home = ({ properties }) =>  {
       <Box mx={2}>
         <Typography variant='h2' my={2}>Affordable Properties</Typography>
         {affordable.length === 0 ? <h3>No Results Found</h3> :
-        <Grid container spacing={6} justifyContent='flex-start'>
+        <Grid container spacing={2} justifyContent='flex-start'>
           {affordable.slice(0,6).map(property => {
             return (
               <Grid xs={12} md={6} lg={4} xl={2} key={property.id}>
@@ -30,7 +30,8 @@ const Home = ({ properties }) =>  {
                   propertyId={property.id}
                   name={property.name}
                   image={property.image_url}
-                  address={property.full_address}
+                  address={property.address_line_one}
+                  cityStateZip={`${property.city}, ${property.state} ${property.zip}`}
                   phone={property.phone_number}
                 />
               </Grid>
@@ -49,7 +50,8 @@ const Home = ({ properties }) =>  {
                   propertyId={property.id}
                   name={property.name}
                   image={property.image_url}
-                  address={property.full_address}
+                  address={property.address_line_one}
+                  cityStateZip={`${property.city}, ${property.state} ${property.zip}`}
                   phone={property.phone_number}
                 />
               </Grid>
@@ -68,7 +70,8 @@ const Home = ({ properties }) =>  {
                   propertyId={property.id}
                   name={property.name}
                   image={property.image_url}
-                  address={property.full_address}
+                  address={property.address_line_one}
+                  cityStateZip={`${property.city}, ${property.state} ${property.zip}`}
                   phone={property.phone_number}
                 />
               </Grid>

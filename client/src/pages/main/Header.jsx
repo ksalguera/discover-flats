@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <>
-      <img id='headerImg' src='https://imgur.com/YAhcpVS.jpg' alt='Apartment' />
+      <img src='https://imgur.com/YAhcpVS.jpg' alt='Apartment' style={{ width: '100%', maxHeight: '350px', objectFit: 'cover' }} />
     </>
   )
 }
