@@ -19,7 +19,7 @@ class PropertiesController < ApplicationController
     property = Property.create!(property_params)
     property.user_id = session[:user_id]
     property.save!
-    render json: property
+    render json: property, status: :created
   end
 
   def update

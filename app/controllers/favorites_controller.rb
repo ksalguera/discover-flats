@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
   # POST /favorites
   def create
     favorite = Favorite.create!(favorite_params)
-    render json: favorite
+    render json: favorite, status: :created
   end
 
   # DELETE /favorites

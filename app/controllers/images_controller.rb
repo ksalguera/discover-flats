@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   # POST /images
   def create
     image = Image.create!(image_params)
-    render json: image
+    render json: image, status: :created
   end
 
   def destroy
