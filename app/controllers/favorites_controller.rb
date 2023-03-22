@@ -13,11 +13,14 @@ class FavoritesController < ApplicationController
     render json: favorite, status: :created
   end
 
-  # DELETE /favorites
   def destroy
     favorite = Favorite.find(params[:id])
-    favorite.destroy
-    head :no_content
+    if favorite.user_id == session[:user_id]
+      favorite.destroy
+      head :no_content
+    else
+      head :unauthorized
+    end
   end
 
   private

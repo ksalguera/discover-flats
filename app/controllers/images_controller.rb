@@ -6,10 +6,15 @@ class ImagesController < ApplicationController
     render json: image, status: :created
   end
 
-  def destroy
-    Image.find(params[:id]).destroy
-    head :no_content
-  end
+  # def destroy
+  #   image = Image.find(params[:id])
+  #   if image.user_id == session[:user_id]
+  #     image.destroy
+  #     head :no_content
+  #   else
+  #     head :unauthorized
+  #   end
+  # end
 
   private
 
