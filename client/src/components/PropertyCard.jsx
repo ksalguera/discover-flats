@@ -26,15 +26,17 @@ function PropertyCard({ propertyId, name, image, address, cityStateZip, phone })
       fetch('/favorites', postOptions)
         .then(res => res.json())
         .then(data => setFavorites([...favorites, data]))
+        setChecked(isChecked);
     } else {
       fetch(`/favorites/${selectedProperty.id}`, { method: 'DELETE' })
-        .then(() => {
-          const updatedFavorites = favorites.filter(favorite => favorite.property.id !== propertyId)
-          setFavorites(updatedFavorites)
+        .then((res) => {
+          if (res.ok) {
+            const updatedFavorites = favorites.filter(favorite => favorite.property.id !== propertyId)
+            setFavorites(updatedFavorites)
+            setChecked(isChecked);
+          }
         })
     }
-
-    setChecked(isChecked);
   }
   
   const formattedPhone = phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');

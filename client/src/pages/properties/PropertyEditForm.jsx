@@ -73,6 +73,8 @@ const [formData, setFormData] = useState({});
             onPropertyEdit(data)
             navigate('/profile')
           })
+        } else if (res.status === 401) {
+          setErrors(['Not Authorized'])
         } else {
           res.json().then(errorData => setErrors(errorData.errors))
         }

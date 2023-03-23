@@ -12,14 +12,10 @@ const PropertyManager = ({ properties, onPropertyDelete }) => {
   const navigate = useNavigate();
   const ownedProperties = properties.filter(property => property.user_id === user.id)
 
-  const handleEdit = () => {
-    console.log('working')
-  }
-
   const handleDelete = (id) => {
     const deleteProperty = async () => {
       const res = await fetch(`/properties/${id}`, { method: 'DELETE' });
-      if (res.ok) { onPropertyDelete(id)}
+      if (res.ok) { onPropertyDelete(id) }
     }
     deleteProperty();
   }
