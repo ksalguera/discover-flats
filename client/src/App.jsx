@@ -26,6 +26,7 @@ function App() {
   const [properties, setProperties] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [drawerOpen, setDrawerOpen] = useState(false);
   
   // set user when navigating back to app
   useEffect(() => {
@@ -83,13 +84,15 @@ function App() {
     setProperties(updatedProperties);
   }
 
+  const handleDrawerToggle = () => setDrawerOpen(!drawerOpen)
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
         <UserContext.Provider value={{ user, setUser }}>
           <FavoriteContext.Provider value={{ favorites, setFavorites }}>
-            <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} />
+            <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} drawerOpen={drawerOpen} onDrawerToggle={handleDrawerToggle} />
             { loading ? <p>Loading...</p> : <Routes>
               <Route path='/' element={<Home properties={updatedProperties} />} /> 
               <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
