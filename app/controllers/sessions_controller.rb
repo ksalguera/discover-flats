@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize, only: [:create]
-  skip_before_action :authorize_managers
+  skip_before_action :require_authentication, only: [:create]
+  skip_before_action :authenticate_manager
 
   # POST /login
   def create

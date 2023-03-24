@@ -6,6 +6,5 @@ class PropertySerializer < ActiveModel::Serializer
   
   has_many :images
   has_many :favorites
-  # removed has_many :users, through: favorites - only want favorites to display
-  # removed belongs_to :user - only want the user_id to display
+  has_many :ratings, serializer: PropertyRatingSerializer
 end

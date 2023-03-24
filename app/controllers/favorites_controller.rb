@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  skip_before_action :authorize_managers
+  skip_before_action :authenticate_manager
 
   def index
     favorites = Favorite.where(user_id: session[:user_id])
@@ -7,8 +7,13 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    favorite = Favorite.create!(favorite_params)
-    render json: favorite, status: :created
+    user = User.find(params[:user_id])
+    if user.id === session[:user_id]
+      favorite = Favorite.create!(favorite_params)
+      render json: favorite, status: :created
+    else 
+      not_authenticated
+    end
   end
 
   def destroy
@@ -17,7 +22,7 @@ class FavoritesController < ApplicationController
       favorite.destroy
       head :no_content
     else
-      head :unauthorized
+      not_authenticated
     end
   end
 

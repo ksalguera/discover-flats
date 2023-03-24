@@ -1,37 +1,68 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { Box, Breadcrumbs, Link, Typography } from '@mui/material';
+import { useState, useEffect, useContext } from 'react';
+import UserContext from '../../contexts/UserContext';
+import { Box, Breadcrumbs, Link, Typography, Rating, CircularProgress } from '@mui/material';
 import PropertyGallery from './PropertyGallery';
 import SectionTitle from '../../components/SectionTitle';
 
 const PropertyPage = () => {
   let { id } = useParams();
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const [property, setProperty] = useState([]);
+  const [rating, setRating] = useState(null);
 
-  // properties/:id fetch request
   useEffect(() => {
     const fetchProperty = async () => {
+      setLoading(true)
       const res = await fetch(`/properties/${id}`);
       if (!res.ok) throw new Error(res.statusText);
       const json = await res.json();
       setProperty(json);
+      if (user) {
+        const findRating = json.ratings?.find(rating => rating.user_id === user.id)
+        findRating ? setRating(findRating.rating) : setRating(0);
+      }
     }
-
     fetchProperty()
+    setLoading(false)
+ 
   }, []);
 
   const searchableAddress = property.full_address ? property.full_address.replaceAll(' ', '+') : '';
   const formattedPhone = property.phone_number ? property.phone_number.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') : '';
 
+  const handleSubmitRating = e => {
+    setRating(parseInt(e.target.value))
+    fetch('/ratings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rating: parseInt(e.target.value), property_id: property.id, user_id: user.id }),
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(() => {
+            setRating(parseInt(e.target.value))
+            alert('working')
+          })
+        } 
+      })
+  }
+
   return (
-    <Box mx={2}>
+    <>
+    { loading ? <CircularProgress /> : 
+    <Box mx={2} mb={5}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' mb={2}>
         <Link onClick={() => navigate('/properties')}>Properties</Link>
         <Typography color='text.primary'>{property.name}</Typography>
       </Breadcrumbs>
       <Typography variant='h2'>{property.name}</Typography> 
-      <Typography sx={{ fontSize: 14 }} color='text.primary' mb={1}>{property.full_address}</Typography>
+      <Typography sx={{ fontSize: 14 }} color='text.primary' mb={1}>
+        <Rating name="read-only" value={5} size='small' readOnly /> (500) <br />
+        {property.full_address}
+      </Typography>
       <PropertyGallery mainImg={property.image_url} images={property.images} />
       <SectionTitle title='Description' />
       {property.description}
@@ -59,7 +90,19 @@ const PropertyPage = () => {
         Admin: {`$${property.admin_fee}`} <br />
         Application: {`$${property.application_fee}`} <br />
       </Typography> 
+
+      { user && property &&
+        <>
+          <SectionTitle title='Rating' />
+          { rating !== 0 
+            ? <Typography variant='body1'>Your Rating: <Rating name='rating' value={rating} size='small' disabled /></Typography>
+            : <Typography variant='body1'>Leave a Rating: <Rating name='rating' value={0} size='small' onChange={handleSubmitRating} /></Typography>
+          }
+       </>
+      }
     </Box>
+    }
+    </>
   )
 }
 

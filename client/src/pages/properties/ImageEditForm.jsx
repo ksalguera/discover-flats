@@ -34,9 +34,12 @@ const ImageEditForm = () => {
   const handleImageDelete = async (id) => {
     const res = await fetch(`/images/${id}`, { method: 'DELETE' });
     if (res.ok) { 
+      setErrors([])
       const updatedImages = property.images?.filter(image => image.id !== id);
       const updatedPropety = {...property, images: updatedImages};
       setProperty(updatedPropety);
+    } else {
+      res.json().then(errorData => setErrors(errorData.errors))
     }
   }
 

@@ -1,9 +1,10 @@
 class Property < ApplicationRecord
-  # set user as optional to allow for seed data
   belongs_to :user, optional: true
   has_many :images
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
+  has_many :ratings
+  has_many :users, through: :ratings
   
   validates :name, { presence: true, uniqueness: true }
   validates :affordability, inclusion: { in: ['affordable', 'midrange', 'luxury'] }

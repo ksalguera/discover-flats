@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
-  skip_before_action :authorize, except: [:create, :update, :destroy]
-  skip_before_action :authorize_managers, except: [:create, :update, :destroy]
+  skip_before_action :require_authentication, except: [:create, :update, :destroy]
+  skip_before_action :authenticate_manager, except: [:create, :update, :destroy]
   
   def index
     properties = Property.all
@@ -25,7 +25,7 @@ class PropertiesController < ApplicationController
       property.update!(property_params)
       render json: property
     else
-      head :unauthorized
+      not_authorized
     end
   end
 
@@ -35,7 +35,7 @@ class PropertiesController < ApplicationController
       property.destroy
       head :no_content
     else
-      head :unauthorized
+      not_authorized
     end
   end
 
