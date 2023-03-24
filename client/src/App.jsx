@@ -9,6 +9,7 @@ import PropertyList from './pages/properties/PropertyList';
 import PropertyPage from './pages/properties/PropertyPage';
 import PropertyForm from './pages/properties/PropertyForm';
 import FavoriteList from './pages/favorites/FavoriteList';
+import Rating from './pages/ratings/Ratings'
 import Profile from './pages/profile/Profile';
 import Login from './pages/profile/Login';
 import SignUp from './pages/profile/SignUp';
@@ -97,6 +98,7 @@ function App() {
               <Route path='/properties/:id/images' element={<ImageEditForm />} />
               <Route path='/properties/new' element={<PropertyForm onPropertyAdd={handlePropertyAdd} />} />
               <Route path='/favorites' element={<FavoriteList />} />
+              <Route path='/ratings' element={<Rating />} />
               <Route path='/profile' element={<Profile properties={updatedProperties} onPropertyDelete={handlePropertyDelete} />} />
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp /> } />
