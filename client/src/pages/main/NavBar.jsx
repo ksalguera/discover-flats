@@ -24,6 +24,7 @@ const NavBar = () => {
       <Stack direction='row' alignItems='center' spacing={2}>
         <Link component={RouterLink} underline='none' sx={navbarStyle} to='/properties'>Properties</Link>         
         { user && <Link component={RouterLink} underline='none' sx={navbarStyle} to='/favorites'>Favorties</Link> }
+        { user && <Link component={RouterLink} underline='none' sx={navbarStyle} to='/ratings'>My Ratings</Link> }
         { user && <Link component={RouterLink} underline='none' sx={navbarStyle} to='/profile'>Profile</Link> }
         <Button variant='outlined' size='small' onClick={!user ? navigate('/login') : handleLogOut} >{ !user ? 'Login' : 'Log Out'}</Button>
       </Stack>

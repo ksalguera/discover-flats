@@ -31,6 +31,7 @@ const NavBarDrawer = ({ drawerOpen, onDrawerToggle }) => {
         <Stack alignItems='center' spacing={2} py={2} divider={<Divider orientation='horizontal' flexItem />}>
           <Link component={RouterLink} underline='none' sx={navbarStyle} to='/properties' onClick={onDrawerToggle}>Properties</Link>         
           { user && <Link component={RouterLink} underline='none' sx={navbarStyle} to='/favorites' onClick={onDrawerToggle}>Favorties</Link> }
+          { user && <Link component={RouterLink} underline='none' sx={navbarStyle} to='/ratings' onClick={onDrawerToggle}>My Ratings</Link> }
           { user && <Link component={RouterLink} underline='none' sx={navbarStyle} to='/profile' onClick={onDrawerToggle}>Profile</Link> }
           <Button variant='outlined' size='small' onClick={!user ? handleLogin : handleLogOut} >{ !user ? 'Login' : 'Log Out'}</Button>
         </Stack>
