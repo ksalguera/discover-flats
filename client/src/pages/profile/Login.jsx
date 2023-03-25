@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
@@ -8,13 +8,12 @@ import FavoriteContext from '../../contexts/FavoriteContex';
 
 const Login = () => {
   const initialState = { username: '', password: '' };
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const { setFavorites } = useContext(FavoriteContext);
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
   
-  // function to set favorites upon log in
   const fetchFavorites = async () => {
     const res = await fetch('/favorites');
     if (!res.ok) throw new Error(res.statusText);
@@ -43,13 +42,13 @@ const Login = () => {
           res.json().then(errorData => setErrors(errorData.errors))
         }
       })
-    
-    // clears form inputs after submit
+
     setFormData(initialState);
   }
 
   return (
     <Box mx={2} mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+      { !user ?
       <Paper sx={{ bgcolor: grey[100], display: 'flex', justifyContent: 'center', maxWidth: 600, paddingY: 4, paddingX: 8 }}>
         <FormControl component='form' onSubmit={handleSubmit}>
           <SectionTitle title='LOGIN' />
@@ -73,6 +72,9 @@ const Login = () => {
           <Typography>Need an account? <Link href='/signup'>SIGN UP</Link></Typography>  
         </FormControl>
       </Paper>
+      :
+      <Navigate to='/properties' replace={true} />
+      }
     </Box>
   )
 }
