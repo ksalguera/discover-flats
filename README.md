@@ -54,7 +54,7 @@ Database is setup to use the following seed data:
 **DESTROY** /favorites/:id (Must Be Logged In)
 ### Reviews - CRUD: Create, Read
 **INDEX** /reviews (By User Must Be Logged In)  \
-**CREATE** /reviews (Must Be Logged In) \
+**CREATE** /reviews (Must Be Logged In) 
 
 ## Attributions
 
