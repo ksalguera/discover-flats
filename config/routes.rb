@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :ratings, only: [:index, :create]
+  resources :reviews, only: [:index, :create]
   resources :images, only: [:create, :destroy]
   resources :favorites, only: [:index, :create, :destroy]
   resources :properties

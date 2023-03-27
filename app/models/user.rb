@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :properties, through: :favorites
   has_many :owned_properties, class_name: "Property", foreign_key: "user_id", dependent: :destroy
-  has_many :ratings
-  has_many :properties, through: :ratings
+  has_many :reviews
+  has_many :properties, through: :reviews
   has_secure_password
 
   validates :username, { presence: true, uniqueness: true, length: { minimum: 4, maximum: 15} } 

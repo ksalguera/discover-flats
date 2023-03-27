@@ -4,6 +4,9 @@ import UserContext from '../../contexts/UserContext';
 import { Box, Breadcrumbs, Link, Typography, Rating, CircularProgress } from '@mui/material';
 import PropertyGallery from './PropertyGallery';
 import SectionTitle from '../../components/SectionTitle';
+import ReviewForm from '../reviews/ReviewForm';
+import PropertyReviews from './PropertyReviews';
+import NotFound from '../../components/NotFound';
 
 const PropertyPage = () => {
   let { id } = useParams();
@@ -11,7 +14,6 @@ const PropertyPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false)
   const [property, setProperty] = useState([]);
-  const [rating, setRating] = useState(null);
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -20,39 +22,33 @@ const PropertyPage = () => {
       if (!res.ok) throw new Error(res.statusText);
       const json = await res.json();
       setProperty(json);
-      if (user) {
-        const findRating = json.ratings?.find(rating => rating.user_id === user.id)
-        findRating ? setRating(findRating.rating) : setRating(0);
-      }
     }
-    fetchProperty()
+    fetchProperty().catch(error => error.message)
     setLoading(false)
  
   }, []);
 
   const searchableAddress = property.full_address ? property.full_address.replaceAll(' ', '+') : '';
   const formattedPhone = property.phone_number ? property.phone_number.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3') : '';
-
-  const handleSubmitRating = e => {
-    setRating(parseInt(e.target.value))
-    fetch('/ratings', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ rating: parseInt(e.target.value), property_id: property.id, user_id: user.id }),
-    })
-      .then(res => {
-        if (res.ok) {
-          res.json().then(() => {
-            setRating(parseInt(e.target.value))
-            alert('working')
-          })
-        } 
-      })
+  
+  const handleReviewAdd = newReview => {
+    const updatedReviews = [newReview, ...property.reviews];
+    setProperty({...property, reviews: updatedReviews })
   }
+
+  let count = 0
+  let total = 0
+  property.reviews?.map(review => {
+    count += 1
+    total += review.rating
+  })
+  const avg = Math.round(total / count)
+
 
   return (
     <>
-    { loading ? <CircularProgress /> : 
+      { property.length === 0 ? <NotFound /> : 
+
     <Box mx={2} mb={5}>
       <Breadcrumbs separator='›' aria-label='breadcrumb' mb={2}>
         <Link onClick={() => navigate('/properties')}>Properties</Link>
@@ -60,7 +56,7 @@ const PropertyPage = () => {
       </Breadcrumbs>
       <Typography variant='h2'>{property.name}</Typography> 
       <Typography sx={{ fontSize: 14 }} color='text.primary' mb={1}>
-        <Rating name="read-only" value={5} size='small' readOnly /> (500) <br />
+        <Rating value={avg} size='small' readOnly /> ({property.reviews.length}) <br />
         {property.full_address}
       </Typography>
       <PropertyGallery mainImg={property.image_url} images={property.images} />
@@ -90,18 +86,12 @@ const PropertyPage = () => {
         Admin: {`$${property.admin_fee}`} <br />
         Application: {`$${property.application_fee}`} <br />
       </Typography> 
-
-      { user && property &&
-        <>
-          <SectionTitle title='Rating' />
-          { rating !== 0 
-            ? <Typography variant='body1'>Your Rating: <Rating name='rating' value={rating} size='small' disabled /></Typography>
-            : <Typography variant='body1'>Leave a Rating: <Rating name='rating' value={0} size='small' onChange={handleSubmitRating} /></Typography>
-          }
-       </>
-      }
+      { user && property && <ReviewForm propertyId={property.id} onReviewAdd={handleReviewAdd} /> }
+      <SectionTitle title='All Reviews' />
+      <PropertyReviews reviews={property.reviews} />
     </Box>
-    }
+
+      }
     </>
   )
 }

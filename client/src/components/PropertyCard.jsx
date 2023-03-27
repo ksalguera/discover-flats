@@ -3,7 +3,7 @@ import { Stack, Card, CardContent, CardMedia, Button, Typography, Checkbox } fro
 import EmptyHeart from '@mui/icons-material/FavoriteBorder';
 import FullHeart from '@mui/icons-material/Favorite';
 import { useNavigate } from 'react-router-dom';
-import FavoriteContext from '../contexts/FavoriteContex';
+import { FavoriteContext } from '../contexts/FavoriteContext';
 import UserContext from '../contexts/UserContext';
 
 function PropertyCard({ propertyId, name, image, address, cityStateZip, phone }) {

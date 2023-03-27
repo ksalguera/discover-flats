@@ -4,12 +4,12 @@ class PropertiesController < ApplicationController
   
   def index
     properties = Property.all
-    render json: properties, methods: [:full_address]
+    render json: properties, methods: [:full_address, :average_review]
   end
 
   def show
     property = Property.find(params[:id])
-    render json: property, methods: [:full_address]
+    render json: property, methods: [:full_address, :average_review]
   end
   
   def create

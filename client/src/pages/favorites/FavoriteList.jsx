@@ -3,7 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Typography } from '@mui/material';
 import PropertyCard from '../../components/PropertyCard';
 import PageTitle from '../../components/PageTitle';
-import FavoriteContext from '../../contexts/FavoriteContex';
+import { FavoriteContext } from '../../contexts/FavoriteContext';
 import UserContext from '../../contexts/UserContext';
 
 const FavoriteList = () => {

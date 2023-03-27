@@ -9,22 +9,23 @@ import PropertyList from './pages/properties/PropertyList';
 import PropertyPage from './pages/properties/PropertyPage';
 import PropertyForm from './pages/properties/PropertyForm';
 import FavoriteList from './pages/favorites/FavoriteList';
-import Rating from './pages/ratings/Ratings'
+import ReviewList from './pages/reviews/ReviewList';
 import Profile from './pages/profile/Profile';
 import Login from './pages/profile/Login';
 import SignUp from './pages/profile/SignUp';
+import NotFound from './components/NotFound';
 import UserContext from './contexts/UserContext';
-import FavoriteContext from './contexts/FavoriteContex';
+import { FavoriteContextProvider } from './contexts/FavoriteContext';
+import { ReviewContextProvider } from './contexts/ReviewContext';
 import './index.css';
 import PropertyEditForm from './pages/properties/PropertyEditForm';
 import ImageEditForm from './pages/properties/ImageEditForm';
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [properties, setProperties] = useState([]);
-  const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [drawerOpen, setDrawerOpen] = useState(false);
   
@@ -38,19 +39,6 @@ function App() {
     }
     fetchUser().catch(error => error.message)
   }, [])
-  
-  // set favorites when navigating back to app
-  useEffect(() => {
-    const fetchFavorites = async () => {
-      setLoading(true)
-      const res = await fetch('/favorites');
-      if (!res.ok) throw new Error(res.statusText);
-      const json = await res.json();
-      setFavorites(json);
-    }
-    fetchFavorites().catch(error => error.message)
-    setLoading(false)
-   }, [])
 
   // properties fetch request
   useEffect(() => {
@@ -91,22 +79,25 @@ function App() {
       <ThemeProvider theme={responsiveFontSizes(theme)}>
         <CssBaseline />
         <UserContext.Provider value={{ user, setUser }}>
-          <FavoriteContext.Provider value={{ favorites, setFavorites }}>
-            <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} drawerOpen={drawerOpen} onDrawerToggle={handleDrawerToggle} />
-            { loading ? <p>Loading...</p> : <Routes>
-              <Route path='/' element={<Home properties={updatedProperties} />} /> 
-              <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
-              <Route path='/properties/:id' element={<PropertyPage />} />
-              <Route path='/properties/:id/edit' element={<PropertyEditForm onPropertyEdit={handlePropertyEdit} />} />
-              <Route path='/properties/:id/images' element={<ImageEditForm />} />
-              <Route path='/properties/new' element={<PropertyForm onPropertyAdd={handlePropertyAdd} />} />
-              <Route path='/favorites' element={<FavoriteList />} />
-              <Route path='/ratings' element={<Rating />} />
-              <Route path='/profile' element={<Profile properties={updatedProperties} onPropertyDelete={handlePropertyDelete} />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/signup' element={<SignUp /> } />
-            </Routes>}
-          </FavoriteContext.Provider>
+          <FavoriteContextProvider>
+            <ReviewContextProvider>
+              <TopBar properties={properties} searchValue={searchValue} setSearchValue={setSearchValue} drawerOpen={drawerOpen} onDrawerToggle={handleDrawerToggle} />
+              { loading ? <p>Loading...</p> : <Routes>
+                <Route path='/' element={<Home properties={updatedProperties} />} /> 
+                <Route path='/properties' element={<PropertyList properties={updatedProperties} />} />           
+                <Route path='/properties/:id' element={<PropertyPage />} />
+                <Route path='/properties/:id/edit' element={<PropertyEditForm onPropertyEdit={handlePropertyEdit} />} />
+                <Route path='/properties/:id/images' element={<ImageEditForm />} />
+                <Route path='/properties/new' element={<PropertyForm onPropertyAdd={handlePropertyAdd} />} />
+                <Route path='/favorites' element={<FavoriteList />} />
+                <Route path='/reviews' element={<ReviewList />} />
+                <Route path='/profile' element={<Profile properties={updatedProperties} onPropertyDelete={handlePropertyDelete} />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<SignUp /> } />
+                <Route path='*' element={<NotFound />} />
+              </Routes>}              
+            </ReviewContextProvider>
+          </FavoriteContextProvider>
         </UserContext.Provider>
       </ThemeProvider>
     </ColorModeContext.Provider>

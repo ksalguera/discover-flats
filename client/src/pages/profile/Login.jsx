@@ -4,7 +4,7 @@ import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import SectionTitle from '../../components/SectionTitle';
-import FavoriteContext from '../../contexts/FavoriteContex';
+import { FavoriteContext }from '../../contexts/FavoriteContext';
 
 const Login = () => {
   const initialState = { username: '', password: '' };
@@ -19,6 +19,7 @@ const Login = () => {
     if (!res.ok) throw new Error(res.statusText);
     const json = await res.json();
     setFavorites(json);
+    navigate('/')
   }
 
   const handleInputChange = e => setFormData({...formData, [e.target.name]: e.target.value});
@@ -35,8 +36,7 @@ const Login = () => {
           res.json().then(data => {
             setUser(data)
             setErrors(null)
-            fetchFavorites().catch(() => navigate('/'))
-            navigate('/')
+            fetchFavorites()
           })
         } else {
           res.json().then(errorData => setErrors(errorData.errors))
@@ -49,31 +49,31 @@ const Login = () => {
   return (
     <Box mx={2} mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
       { !user ?
-      <Paper sx={{ bgcolor: grey[100], display: 'flex', justifyContent: 'center', maxWidth: 600, paddingY: 4, paddingX: 8 }}>
-        <FormControl component='form' onSubmit={handleSubmit}>
-          <SectionTitle title='LOGIN' />
-          <TextField 
-            margin='normal' 
-            label='Username'
-            name='username'
-            value={formData.username}
-            onChange={handleInputChange}
-          />
-          <TextField 
-            type='password'
-            margin='normal' 
-            label='Password'
-            name='password'
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-          {errors && (<ul><li style={{color: 'red'}}>{errors}</li></ul>)}
-          <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>LOGIN</Button>
-          <Typography>Need an account? <Link href='/signup'>SIGN UP</Link></Typography>  
-        </FormControl>
-      </Paper>
-      :
-      <Navigate to='/properties' replace={true} />
+        <Paper sx={{ bgcolor: grey[100], display: 'flex', justifyContent: 'center', maxWidth: 600, paddingY: 4, paddingX: 8 }}>
+          <FormControl component='form' onSubmit={handleSubmit}>
+            <SectionTitle title='LOGIN' />
+            <TextField 
+              margin='normal' 
+              label='Username'
+              name='username'
+              value={formData.username}
+              onChange={handleInputChange}
+            />
+            <TextField 
+              type='password'
+              margin='normal' 
+              label='Password'
+              name='password'
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+            {errors && (<ul><li style={{color: 'red'}}>{errors}</li></ul>)}
+            <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>LOGIN</Button>
+            <Typography>Need an account? <Link href='/signup'>SIGN UP</Link></Typography>  
+          </FormControl>
+        </Paper>
+        :
+        <Navigate to='/properties' replace={true} />
       }
     </Box>
   )

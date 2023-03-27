@@ -56,7 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_003218) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ratings", force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
+    t.text "description"
     t.integer "rating"
     t.integer "property_id"
     t.integer "user_id"

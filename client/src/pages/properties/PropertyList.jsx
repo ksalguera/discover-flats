@@ -20,6 +20,7 @@ const PropertyList = ({ properties }) => {
                 address={property.address_line_one}
                 cityStateZip={`${property.city}, ${property.state} ${property.zip}`}
                 phone={property.phone_number}
+                favorites={property.favorites}
               />
             </Grid>
           )

@@ -3,8 +3,8 @@ class Property < ApplicationRecord
   has_many :images
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
-  has_many :ratings
-  has_many :users, through: :ratings
+  has_many :reviews
+  has_many :users, through: :reviews
   
   validates :name, { presence: true, uniqueness: true }
   validates :affordability, inclusion: { in: ['affordable', 'midrange', 'luxury'] }
@@ -22,10 +22,9 @@ class Property < ApplicationRecord
   validates :pet_limit, { presence: true, if: lambda { |property| property.dogs_allowed || property.cats_allowed }, inclusion:  { in: 1..10 } }
   validates :admin_fee, { presence: true, inclusion: { in: 0..400 } }
   validates :application_fee, { presence: true, inclusion: { in: 0..400 } }
-
-  private
   
-  # compiles full address
+  private 
+
   def full_address
     if self.address_line_two.nil? || self.address_line_two == ''
       "#{self.address_line_one}, #{self.city}, #{self.state} #{self.zip}"
@@ -34,4 +33,13 @@ class Property < ApplicationRecord
     end
   end
 
+  def average_review
+    if reviews.count > 0
+      ratings_sum = reviews.sum(:rating)
+      average_rating = ratings_sum / reviews.count
+      return average_rating.round
+    else
+      return 0
+    end
+  end
 end
