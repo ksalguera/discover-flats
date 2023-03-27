@@ -8,7 +8,8 @@ Full stack apartment search application utilizing rails and react.
 User Stories
 * General user can create a profile
 * General user can login and logout via sessions
-* General user can add and remove favorites
+* General user can add and delete favorites
+* General user can add reviews
 * User with manager access can create, update, and delete a property
 * User with manager access can add and remove property images
 
@@ -31,26 +32,29 @@ Database is setup to use the following seed data:
 * 4 Property Images for one of the properties
 
 ## Database Relations
-![ERD](https://imgur.com/qT9xof9.png)
+![ERD](https://imgur.com/qWnK7X6.png)
 
 ## Routes
 
 ### Properties - CRUD: Create, Read, Update, Delete
 **INDEX** /properties \
 **SHOW** /properties/:id \
-**CREATE** /properties (Locked with Authorization) \
-**UPDATE** /properties/:id (Locked with Authorization) \
-**DESTROY** /properties/:id (Locked with Authorization)
+**CREATE** /properties (Must Be Logged In) \
+**UPDATE** /properties/:id (Must Be Logged In) \
+**DESTROY** /properties/:id (Must Be Logged In)
 ### Images - CRUD: Create, Delete
-**CREATE** /images (Locked with Authorization) \
-**DESTROY** /images/:id (Locked with Authorization)
+**CREATE** /images (Must Be Logged In) \
+**DESTROY** /images/:id (Must Be Logged In)
 ### Users - CRUD: Create, Read
-**SHOW** /users/:id (Locked with Authorization) \
+**SHOW** /users/:id (Must Be Logged In) \
 **CREATE** /users
 ### Favorites - CRUD: Create, Read, Delete
-**INDEX** /favorites (Locked with Authorization)  \
-**CREATE** /favorites (Locked with Authorization) \
-**DESTROY** /favorites/:id (Locked with Authorization)
+**INDEX** /favorites (By User and Must Be Logged In)  \
+**CREATE** /favorites (Must Be Logged In) \
+**DESTROY** /favorites/:id (Must Be Logged In)
+### Reviews - CRUD: Create, Read
+**INDEX** /reviews (By User Must Be Logged In)  \
+**CREATE** /reviews (Must Be Logged In) \
 
 ## Attributions
 
