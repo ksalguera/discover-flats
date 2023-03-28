@@ -1,12 +1,13 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Box, Breadcrumbs, Link, Typography, Rating } from '@mui/material';
 import UserContext from '../../contexts/UserContext';
-import { Box, Breadcrumbs, Link, Typography, Rating, CircularProgress } from '@mui/material';
 import PropertyGallery from './PropertyGallery';
-import SectionTitle from '../../components/SectionTitle';
-import ReviewForm from '../reviews/ReviewForm';
 import PropertyReviews from './PropertyReviews';
+import ReviewForm from '../reviews/ReviewForm';
+import SectionTitle from '../../components/SectionTitle';
 import NotFound from '../../components/NotFound';
+
 
 const PropertyPage = () => {
   let { id } = useParams();
@@ -43,7 +44,6 @@ const PropertyPage = () => {
     total += review.rating
   })
   const avg = Math.round(total / count)
-
 
   return (
     <>

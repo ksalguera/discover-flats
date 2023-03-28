@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Box, Typography } from '@mui/material';
-import PropertyCard from '../../components/PropertyCard';
-import PageTitle from '../../components/PageTitle';
+import Grid from '@mui/material/Unstable_Grid2';
 import { FavoriteContext } from '../../contexts/FavoriteContext';
 import UserContext from '../../contexts/UserContext';
+import PropertyCard from '../../components/PropertyCard';
+import PageTitle from '../../components/PageTitle';
 
 const FavoriteList = () => {
   const { user } = useContext(UserContext);

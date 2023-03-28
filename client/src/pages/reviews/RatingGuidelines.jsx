@@ -1,4 +1,4 @@
-import { Stack, FormLabel } from '@mui/material';
+import { FormLabel, Stack } from '@mui/material';
 import RatingGuidelinesLabel from './RatingGuidelinesLabel';
 
 const RatingGuidelines = () => {

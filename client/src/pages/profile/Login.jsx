@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import UserContext from '../../contexts/UserContext';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import UserContext from '../../contexts/UserContext';
+import { FavoriteContext } from '../../contexts/FavoriteContext';
 import SectionTitle from '../../components/SectionTitle';
-import { FavoriteContext }from '../../contexts/FavoriteContext';
 
 const Login = () => {
   const initialState = { username: '', password: '' };

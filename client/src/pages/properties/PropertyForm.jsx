@@ -1,8 +1,9 @@
 import { useState, useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import { Box, FormControl, FormLabel, Button, TextField, FormControlLabel, InputAdornment, Radio, RadioGroup, Typography } from '@mui/material';
-import SectionTitle from '../../components/SectionTitle';
 import { useNavigate } from 'react-router-dom';
+import { Box, FormControl, FormLabel, Button, TextField, FormControlLabel, InputAdornment, Radio, RadioGroup, Typography } from '@mui/material';
+import UserContext from '../../contexts/UserContext';
+import SectionTitle from '../../components/SectionTitle';
+
 
 const PropertyForm = ({ onPropertyAdd }) => {
   const { user } = useContext(UserContext);

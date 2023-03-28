@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
 import { Box, Typography } from '@mui/material';
+import UserContext from '../../contexts/UserContext';
 import PageTitle from '../../components/PageTitle';
 import SectionTitle from '../../components/SectionTitle';
 import PropertyManager from '../properties/PropertyManager';

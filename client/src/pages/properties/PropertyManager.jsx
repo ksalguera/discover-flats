@@ -1,11 +1,11 @@
 import React from 'react';
 import { Stack, Button, Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import SectionTitle from "../../components/SectionTitle";
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
+import AddIcon from '@mui/icons-material/Add';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import SectionTitle from '../../components/SectionTitle';
 
 const PropertyManager = ({ properties, onPropertyDelete }) => {
   const { user } = useContext(UserContext);

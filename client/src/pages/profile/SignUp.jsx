@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 import { Box, Paper, FormControl, Button, Link, TextField, FormControlLabel, Checkbox, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import UserContext from '../../contexts/UserContext';
 import SectionTitle from '../../components/SectionTitle';
-import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const initialState = { 

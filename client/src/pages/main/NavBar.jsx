@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
 import { NavLink as RouterLink, useNavigate } from 'react-router-dom';
 import { Stack, Link, Button } from "@mui/material";
+import UserContext from '../../contexts/UserContext';
 import { FavoriteContext } from '../../contexts/FavoriteContext';
 import navbarStyle from './navbarStyle';
 

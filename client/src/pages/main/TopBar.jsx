@@ -1,17 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { Typography, Stack, IconButton } from '@mui/material';
-import Box from '@mui/material/Box';
-import MenuIcon from '@mui/icons-material/Menu';
-import { useMode } from '../../contexts/ThemeContext';
+import { Box, Typography, Stack, IconButton } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import MenuIcon from '@mui/icons-material/Menu';
+import theme from '../../contexts/ThemeContext';
 import SearchBox from './SearchBox';
 import NavBar from './NavBar';
 import NavBarDrawer from './NavBarDrawer';
 
-
 const TopBar = ({ properties, searchValue, setSearchValue, drawerOpen, onDrawerToggle }) => {
   const navigate = useNavigate();
-  const [theme] = useMode();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (

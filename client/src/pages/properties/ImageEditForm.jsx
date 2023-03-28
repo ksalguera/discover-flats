@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
+import { useParams } from 'react-router-dom';
 import { Box, Stack, IconButton, FormControl, Button, TextField, Typography, Icon } from '@mui/material';
 import PhotoIcon from '@mui/icons-material/Photo';
 import CloseIcon from '@mui/icons-material/Close';
-import { useParams } from 'react-router-dom';
+import UserContext from '../../contexts/UserContext';
 import PageTitle from '../../components/PageTitle';
+
 
 const ImageEditForm = () => {
   const { user } = useContext(UserContext);

@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
-import { Box, FormControl, FormLabel, Button, TextField, FormControlLabel, InputAdornment, Radio, RadioGroup, Typography } from '@mui/material';
-import SectionTitle from '../../components/SectionTitle';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import UserContext from '../../contexts/UserContext';
+import SectionTitle from '../../components/SectionTitle';
+
 
 const PropertyEditForm = ({ onPropertyEdit }) => {
   const { user } = useContext(UserContext);

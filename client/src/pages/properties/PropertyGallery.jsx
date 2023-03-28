@@ -1,11 +1,9 @@
-import { useMode } from '../../contexts/ThemeContext';
+import theme from '../../contexts/ThemeContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Stack } from '@mui/material';
 
 
 const PropertyGallery = ({ mainImg, images }) => {
-  // conditional display based on page size
-  const [theme] = useMode();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   const imgArray = images ? images.map(image => image.image_url) : null;
   const placeholderImg = 'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
