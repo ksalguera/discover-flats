@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Paper, FormControl, Button, Link, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import UserContext from '../../contexts/UserContext';
@@ -47,35 +47,37 @@ const Login = () => {
   }
 
   return (
-    <Box mx={2} mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+    <>
       { !user ?
-        <Paper sx={{ bgcolor: grey[100], display: 'flex', justifyContent: 'center', maxWidth: 600, paddingY: 4, paddingX: 8 }}>
-          <FormControl component='form' onSubmit={handleSubmit}>
-            <SectionTitle title='LOGIN' />
-            <TextField 
-              margin='normal' 
-              label='Username'
-              name='username'
-              value={formData.username}
-              onChange={handleInputChange}
-            />
-            <TextField 
-              type='password'
-              margin='normal' 
-              label='Password'
-              name='password'
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-            {errors && (<ul><li style={{color: 'red'}}>{errors}</li></ul>)}
-            <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>LOGIN</Button>
-            <Typography>Need an account? <Link href='/signup'>SIGN UP</Link></Typography>  
-          </FormControl>
-        </Paper>
+        <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Paper sx={{ bgcolor: grey[100], display: 'flex', justifyContent: 'center', maxWidth: 600, paddingY: 4, paddingX: 8 }}>
+            <FormControl component='form' onSubmit={handleSubmit}>
+              <SectionTitle title='LOGIN' />
+              <TextField 
+                margin='normal' 
+                label='Username'
+                name='username'
+                value={formData.username}
+                onChange={handleInputChange}
+              />
+              <TextField 
+                type='password'
+                margin='normal' 
+                label='Password'
+                name='password'
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+              {errors && (<ul><li style={{color: 'red'}}>{errors}</li></ul>)}
+              <Button type='submit' variant='contained' color='secondary' sx={{ margin: 3 }}>LOGIN</Button>
+              <Typography>Need an account? <Link href='/signup'>SIGN UP</Link></Typography>  
+            </FormControl>
+          </Paper>
+        </Box>
         :
-        <Navigate to='/properties' replace={true} />
+        <Typography variant='body1' mx={2}>Currently logged In.</Typography>
       }
-    </Box>
+    </>
   )
 }
 
