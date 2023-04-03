@@ -10,7 +10,7 @@ const NavBar = () => {
   const { setFavorites } = useContext(FavoriteContext);
   const navigate = useNavigate();
   
-  const handleLogin = () => !user ? navigate('/login') : handleLogOut;
+  const handleLogin = () => !user ? navigate('/login') : handleLogOut();
   
   const handleLogOut = async () => {
     const res = await fetch('/logout', { method: 'DELETE' });
