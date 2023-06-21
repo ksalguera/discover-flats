@@ -14,8 +14,7 @@ User Stories
 * User with manager access can add and remove property images
 
 ## Project Preview
-
-### Deployed Web Application: [Discover Flats](https://discover-flats-app.onrender.com)
+Coming Soon
 
 ### Home Page
 ![Home](https://imgur.com/VpQnVPI.jpg)
